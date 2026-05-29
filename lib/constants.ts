@@ -1,0 +1,381 @@
+/**
+ * SITE CONFIGURATION & CONSTANTS
+ * 
+ * This file contains all easily editable content and configuration
+ * for the So Bella Hair & Beauty Lounge website.
+ * 
+ * Edit these values to customize text, services, and other content.
+ */
+
+// Brand Information
+export const SITE_CONFIG = {
+  name: 'So Bella Hair & Beauty Lounge',
+  tagline: 'Personal luxury beauty by a solo stylist',
+  description: 'Personal luxury beauty services from a dedicated solo stylist—tailored hair and beauty that makes you feel radiant.',
+  email: 'hello@sobella.com',
+  phone: '(555) 123-4567',
+  address: '123 Beauty Street, NY 10001',
+  businessHours: {
+    monday: 'Closed',
+    tuesday: '10:00 AM - 8:00 PM',
+    wednesday: '10:00 AM - 8:00 PM',
+    thursday: '10:00 AM - 8:00 PM',
+    friday: '10:00 AM - 8:00 PM',
+    saturday: '10:00 AM - 8:00 PM',
+    sunday: '12:00 PM - 6:00 PM',
+  },
+}
+
+export const HERO_CONTENT = {
+  tagline: '✨ Luxury beauty by a solo stylist',
+  headline: 'Your most radiant self starts with',
+  headlineAccent: 'one expert touch',
+  subheadline:
+    'Warm, professional beauty and hair services crafted by a dedicated solo stylist who gives every client undivided attention.',
+  highlights: [
+    {
+      title: 'One-on-one care',
+      description: 'Personal appointments for your unique glow.',
+    },
+    {
+      title: 'Luxury results',
+      description: 'Soft, luminous hair and beauty finishes.',
+    },
+    {
+      title: 'Warm welcome',
+      description: 'Every visit feels like a pampering retreat.',
+    },
+  ],
+  primaryCta: 'Book Your Appointment',
+  secondaryCta: 'WhatsApp Us',
+  heroImageSrc: '',
+  heroImageAlt: 'Luxury salon service in a warm salon atmosphere',
+}
+
+export const GALLERY_SETTINGS = {
+  categories: ['All', 'Hair Extensions', 'Styling', 'Lashes', 'Brows', 'Beauty Treatments', 'Microblading'],
+  defaultImages: [
+    {
+      id: '1',
+      category: 'Hair Extensions',
+      title: 'Luxurious Extensions',
+      src: '/images/gallery-1.jpg',
+    },
+    {
+      id: '2',
+      category: 'Styling',
+      title: 'Red Carpet Glam',
+      src: '/images/gallery-2.jpg',
+    },
+    {
+      id: '3',
+      category: 'Lashes',
+      title: 'Volume Lashes',
+      src: '/images/gallery-3.jpg',
+    },
+    {
+      id: '4',
+      category: 'Brows',
+      title: 'Perfect Brows',
+      src: '/images/gallery-4.jpg',
+    },
+    {
+      id: '5',
+      category: 'Hair Extensions',
+      title: 'Blonde Perfection',
+      src: '/images/gallery-5.jpg',
+    },
+    {
+      id: '6',
+      category: 'Beauty Treatments',
+      title: 'Glowing Skin',
+      src: '/images/gallery-6.jpg',
+    },
+    {
+      id: '7',
+      category: 'Styling',
+      title: 'Bridal Look',
+      src: '/images/gallery-7.jpg',
+    },
+    {
+      id: '8',
+      category: 'Microblading',
+      title: 'Perfect Microblading',
+      src: '/images/gallery-8.jpg',
+    },
+  ],
+}
+
+// Social Media Links
+export const SOCIAL_LINKS = {
+  tiktok: 'https://www.tiktok.com/@so.bella.hair.bea',
+  facebook: 'https://www.facebook.com/share/1F5JiMmEbE/?mibextid=wwXIfr',
+  instagram: 'https://www.instagram.com/so.bella.hair.beauty.lounge',
+}
+
+// Services Configuration
+export const SERVICES = [
+  {
+    id: 1,
+    title: 'Hair Extensions',
+    description: 'Premium quality hair extensions with expert application. Seamless, natural-looking results that last.',
+    icon: '💇‍♀️',
+    details: [
+      'Premium quality hair sourcing',
+      'Expert application techniques',
+      'Natural-looking results',
+      'Long-lasting durability',
+      'Custom styling included',
+    ],
+  },
+  {
+    id: 2,
+    title: 'Beauty Treatments',
+    description: 'Comprehensive beauty services including facials, skin treatments, and rejuvenation.',
+    icon: '✨',
+    details: [
+      'Professional facials',
+      'Skin treatments',
+      'Anti-aging therapies',
+      'Hydration treatments',
+      'Customized skincare',
+    ],
+  },
+  {
+    id: 3,
+    title: 'Lashes',
+    description: 'Beautiful, natural-looking eyelash extensions that enhance your eyes.',
+    icon: '👁️',
+    details: [
+      'Premium lash materials',
+      'Natural application',
+      'Volume options',
+      'Customized length',
+      'Professional care',
+    ],
+  },
+  {
+    id: 4,
+    title: 'Brows',
+    description: 'Expert eyebrow shaping, tinting, and lamination services.',
+    icon: '💫',
+    details: [
+      'Professional shaping',
+      'Tinting services',
+      'Brow lamination',
+      'Custom design',
+      'Long-lasting results',
+    ],
+  },
+  {
+    id: 5,
+    title: 'Microblading',
+    description: 'Semi-permanent eyebrow tattoo for perfectly shaped, natural-looking brows.',
+    icon: '🎯',
+    details: [
+      'Semi-permanent solution',
+      'Natural hairlike strokes',
+      'Custom color matching',
+      'Expert technician',
+      'Maintenance included',
+    ],
+  },
+  {
+    id: 6,
+    title: 'Styling',
+    description: 'Professional hair styling for any occasion. From casual to red-carpet glam.',
+    icon: '💄',
+    details: [
+      'Expert styling',
+      'Blow-outs',
+      'Updo designs',
+      'Special occasion styling',
+      'Bridal packages',
+    ],
+  },
+  {
+    id: 7,
+    title: 'Mobile Appointments',
+    description: 'We come to you! Professional services at your location for ultimate convenience.',
+    icon: '🚗',
+    details: [
+      'In-home service',
+      'Full equipment setup',
+      'Same quality service',
+      'Flexible scheduling',
+      'Travel fee applicable',
+    ],
+  },
+]
+
+// Color Palette (matches Tailwind config)
+export const COLORS = {
+  primary: '#f5e6e0', // blush
+  secondary: '#e8d4c4', // nude
+  accent: '#d4af7a', // gold
+  dark: '#1a1a1a', // beauty-black
+  light: '#faf9f7', // beauty-white
+}
+
+// Animation timings (in seconds)
+export const ANIMATION_TIMINGS = {
+  fast: 0.3,
+  normal: 0.5,
+  slow: 0.8,
+  verySlow: 1.2,
+}
+
+// Pricing (customize as needed)
+export const PRICING = {
+  hairExtensions: {
+    min: 150,
+    max: 400,
+    description: 'Starting price - varies by hair length and volume',
+  },
+  beautyTreatments: {
+    min: 75,
+    max: 200,
+    description: 'Facial and skin treatment packages',
+  },
+  lashes: {
+    min: 120,
+    max: 250,
+    description: 'Natural to volume lash extensions',
+  },
+  brows: {
+    min: 50,
+    max: 150,
+    description: 'Shaping, tinting, and lamination',
+  },
+  microblading: {
+    min: 300,
+    max: 500,
+    description: 'Semi-permanent eyebrow tattooing',
+  },
+  styling: {
+    min: 60,
+    max: 200,
+    description: 'Hair styling for all occasions',
+  },
+  mobileAppointment: {
+    fee: 25,
+    maxFee: 50,
+    description: 'Additional travel fee based on location',
+  },
+}
+
+// Meta Tags for SEO
+export const SEO = {
+  title: 'So Bella Hair & Beauty Lounge - Luxury Beauty Salon',
+  description: 'Experience luxury hair extensions, beauty treatments, and professional styling at So Bella Hair & Beauty Lounge.',
+  keywords: [
+    'hair extensions',
+    'beauty salon',
+    'lashes',
+    'brows',
+    'microblading',
+    'luxury beauty',
+    'hair treatment',
+    'salon near me',
+  ],
+}
+
+// Testimonials/Reviews (sample data for display)
+export const SAMPLE_REVIEWS = [
+  {
+    id: 1,
+    name: 'Sarah Johnson',
+    role: 'Client',
+    rating: 5,
+    text: 'So Bella completely transformed my look! The hair extensions are absolutely gorgeous and look so natural.',
+    avatar: '👩‍🦰',
+  },
+  {
+    id: 2,
+    name: 'Emily Davis',
+    role: 'Bride',
+    rating: 5,
+    text: 'The bridal styling was perfect! I felt beautiful and confident on my wedding day.',
+    avatar: '👰',
+  },
+  {
+    id: 3,
+    name: 'Jessica Martinez',
+    role: 'Client',
+    rating: 5,
+    text: 'My lash extensions are stunning! The attention to detail is incredible.',
+    avatar: '👩‍🦱',
+  },
+]
+
+// FAQ Items
+export const FAQ_ITEMS = [
+  {
+    id: 1,
+    question: 'How long do hair extensions last?',
+    answer: 'With proper care and regular maintenance, hair extensions typically last 3-6 months. Regular maintenance appointments every 4-6 weeks help extend their lifespan.',
+  },
+  {
+    id: 2,
+    question: 'Can I wash my hair extensions?',
+    answer: 'Yes! Use lukewarm water and sulfate-free shampoo. Wait 48 hours after installation before the first wash.',
+  },
+  {
+    id: 3,
+    question: 'Do you offer mobile appointments?',
+    answer: 'Yes, we offer mobile appointments with an additional travel fee. Mobile bookings require 72 hours advance notice.',
+  },
+  {
+    id: 4,
+    question: 'What if I\'m allergic to products?',
+    answer: 'We require a patch test 48 hours before service for all new clients. We can use hypoallergenic alternatives when needed.',
+  },
+  {
+    id: 5,
+    question: 'Can I book same-day appointments?',
+    answer: 'Same-day appointments are not available. We require 24-48 hours advance booking to ensure quality service.',
+  },
+  {
+    id: 6,
+    question: 'What payment methods do you accept?',
+    answer: 'We accept cash, credit/debit cards, bank transfers, and digital payment apps. A 50% deposit is required to confirm bookings.',
+  },
+]
+
+// Booking Requirements
+export const BOOKING_REQUIREMENTS = {
+  minimumAdvanceNotice: 24, // hours
+  mobileAdvanceNotice: 72, // hours
+  depositPercentage: 50, // % of total
+  cancellationNotice: 48, // hours
+  depositValidity: 90, // days
+}
+
+// Feature Flags (for future functionality)
+export const FEATURES = {
+  enableOnlineBooking: true,
+  enableContactForm: true,
+  enableReviews: true,
+  enableGallery: true,
+  enableBlog: false,
+  enableChat: false,
+  enableSignUp: false,
+}
+
+// Email Configuration
+export const EMAIL_CONFIG = {
+  fromName: 'So Bella Hair & Beauty Lounge',
+  fromEmail: 'noreply@sobella.com',
+  replyTo: 'hello@sobella.com',
+  supportEmail: 'hello@sobella.com',
+}
+
+// Supabase Configuration
+export const SUPABASE_CONFIG = {
+  tables: {
+    contacts: 'contact_submissions',
+    bookings: 'bookings',
+    reviews: 'reviews',
+    gallery: 'gallery_images',
+  },
+}

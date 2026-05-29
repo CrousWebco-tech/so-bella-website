@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Montserrat', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #faf9f7;
+  color: #1a1a1a;
+  font-family: var(--font-sans);
+}
+
+/* Luxury glassmorphism effect */
+.glass {
+  @apply backdrop-blur-md bg-white/20 border border-white/30;
+}
+
+.glass-dark {
+  @apply backdrop-blur-md bg-black/20 border border-white/10;
+}
+
+/* Luxury gradient text */
+.gradient-text {
+  @apply bg-gradient-to-r from-gold to-gold-light bg-clip-text text-transparent;
+}
+
+/* Luxury shadows */
+.shadow-luxury {
+  @apply shadow-xl shadow-black/10;
+}
+
+.shadow-luxury-lg {
+  @apply shadow-2xl shadow-black/15;
+}
+
+/* Smooth transitions */
+.transition-luxury {
+  @apply transition-all duration-300 ease-out;
+}
+
+/* Responsive utilities */
+@media (max-width: 640px) {
+  .hidden-mobile {
+    display: none;
+  }
+}
+
+@media (min-width: 641px) {
+  .hidden-desktop {
+    display: none;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5e6e0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4af7a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c99563;
+}

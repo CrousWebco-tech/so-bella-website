@@ -1,0 +1,55 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install",
+  "env": {
+    "NEXT_PUBLIC_SUPABASE_URL": {
+      "description": "Your Supabase project URL",
+      "placeholder": "https://xxxx.supabase.co"
+    },
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": {
+      "description": "Your Supabase anonymous key",
+      "placeholder": "eyJxx..."
+    },
+    "NEXT_PUBLIC_WHATSAPP_NUMBER": {
+      "description": "WhatsApp Business number with country code",
+      "placeholder": "14155552671"
+    },
+    "NEXT_PUBLIC_SITE_NAME": {
+      "description": "Your business name",
+      "placeholder": "So Bella Hair & Beauty Lounge"
+    },
+    "NEXT_PUBLIC_SITE_URL": {
+      "description": "Your website URL",
+      "placeholder": "https://sobella.com"
+    },
+    "NEXT_PUBLIC_SUPPORT_EMAIL": {
+      "description": "Support email address",
+      "placeholder": "hello@sobella.com"
+    }
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ]
+}
