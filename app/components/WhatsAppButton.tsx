@@ -5,10 +5,11 @@ import { motion } from 'framer-motion'
 
 export default function WhatsAppButton() {
   // Get WhatsApp number from environment or use placeholder
-  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '1234567890'
-  
-  // Format WhatsApp URL (remove any non-numeric characters except +)
-  const whatsappUrl = `https://wa.me/${whatsappNumber.replace(/[^0-9+]/g, '')}`
+  const rawNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '1234567890'
+
+  // Normalize number for wa.me (digits only, drop any leading +)
+  const normalized = rawNumber.replace(/[^0-9]/g, '').replace(/^0+/, '')
+  const whatsappUrl = `https://wa.me/${normalized}`
 
   return (
     <motion.a

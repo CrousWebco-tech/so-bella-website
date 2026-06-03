@@ -96,7 +96,7 @@ export default function HeroSection() {
                 {HERO_CONTENT.primaryCta}
               </motion.button>
               <motion.a
-                href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '1234567890'}`}
+                href={`https://wa.me/${(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '1234567890').replace(/[^0-9]/g, '').replace(/^0+/, '')}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
