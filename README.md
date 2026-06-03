@@ -187,7 +187,11 @@ See [SUPABASE_SETUP.md](SUPABASE_SETUP.md) for complete database setup.
    - Click "Deploy"
    - Your site is live!
 
-See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions.
+See [DEPLOYMENT.md](DEPLOYMENT.md) and [docs/PROVISION_AND_DEPLOY.md](docs/PROVISION_AND_DEPLOY.md) for detailed instructions.
+
+## 🤝 Handoff
+
+For a final delivery package and client-ready handoff, see [docs/FINAL_HANDOFF.md](docs/FINAL_HANDOFF.md) and `GO_SEND_NOW.md`.
 
 ## 🤝 Client Handoff
 

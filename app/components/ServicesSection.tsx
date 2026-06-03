@@ -252,7 +252,7 @@ export default function ServicesSection() {
           className="text-center mt-16"
         >
           <p className="text-lg text-beauty-black/60 mb-4">
-            Don't see exactly what you need? Contact us for custom packages!
+            Don&apos;t see exactly what you need? Contact us for custom packages!
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}

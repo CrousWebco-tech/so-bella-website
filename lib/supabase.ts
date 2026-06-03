@@ -9,9 +9,13 @@ if (!supabaseUrl || !supabaseAnonKey) {
   console.warn('Supabase environment variables not set. Some features may not work.')
 }
 
-// Create Supabase client only when environment values are available
+// Only create Supabase client when values look valid (must be http(s) url)
+const isValidUrl = (url: string) => /^https?:\/\//i.test(url)
+
 export const supabase =
-  supabaseUrl && supabaseAnonKey ? createClient(supabaseUrl, supabaseAnonKey) : null
+  supabaseUrl && supabaseAnonKey && isValidUrl(supabaseUrl)
+    ? createClient(supabaseUrl, supabaseAnonKey)
+    : null
 
 // Type definitions for database tables
 export type ContactSubmission = {
@@ -189,5 +193,29 @@ export async function addReview(data: Omit<Review, 'id' | 'created_at' | 'verifi
   } catch (error) {
     console.error('Error adding review:', error)
     return { success: false, error }
+  }
+}
+
+/**
+ * Upload an image to Supabase storage and return public URL
+ */
+export async function uploadImage(file: File, folder = 'gallery') {
+  try {
+    if (!supabase) throw new Error('Supabase not configured')
+
+    const filePath = `${folder}/${Date.now()}_${file.name}`
+
+    const { data, error } = await supabase.storage
+      .from('public')
+      .upload(filePath, file, { cacheControl: '3600', upsert: false })
+
+    if (error) throw error
+
+    const { data: urlData } = supabase.storage.from('public').getPublicUrl(data.path)
+
+    return { success: true, url: urlData.publicUrl }
+  } catch (err) {
+    console.error('uploadImage error', err)
+    return { success: false, error: err }
   }
 }

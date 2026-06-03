@@ -37,6 +37,8 @@ http://localhost:3000
 NEXT_PUBLIC_SUPABASE_URL=<your-supabase-url>
 NEXT_PUBLIC_SUPABASE_ANON_KEY=<your-supabase-anon-key>
 NEXT_PUBLIC_WHATSAPP_NUMBER=<your-whatsapp-number-with-country-code>
+NEXT_PUBLIC_SITE_URL=<your-deployed-site-url>
+NEXT_PUBLIC_SUPPORT_EMAIL=<your-support-email>
 ```
 
 **Where to get these:**
@@ -51,6 +53,39 @@ NEXT_PUBLIC_WHATSAPP_NUMBER=<your-whatsapp-number-with-country-code>
 2. **WhatsApp Number**
    - Your WhatsApp number with country code (e.g., `14155552671` for +1 415 555 2671)
    - No spaces, dashes, or special characters
+
+3. **Site URL**
+   - Use your Vercel preview or production URL once deployed
+   - Example: `https://your-project.vercel.app`
+
+4. **Support Email**
+   - Use the business contact email the client will receive replies on
+
+---
+
+## 🚀 Deploy & Preview (No code needed for client)
+
+To make this site available to the client without showing code, deploy it to Vercel and share the live preview URL.
+
+### What to do
+
+1. Push the project to GitHub.
+2. Add repository secrets in GitHub:
+   - `SUPABASE_URL`
+   - `SUPABASE_SERVICE_ROLE_KEY`
+   - `DATABASE_URL`
+   - `VERCEL_TOKEN`
+3. Open the GitHub repository Actions tab.
+4. Run the `Provision Supabase & Deploy` workflow.
+5. In Vercel, add the same public environment variables used in `.env.local`.
+6. Share the Vercel site link with the client.
+
+### Client preview links
+
+- Public site: `https://<your-vercel-project>.vercel.app`
+- Admin page: `https://<your-vercel-project>.vercel.app/admin`
+
+The client can open the preview on mobile or laptop without touching code.
 
 ---
 

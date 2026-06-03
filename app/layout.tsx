@@ -5,6 +5,7 @@ import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://sobella.com'),
   title: 'So Bella Hair & Beauty Lounge - Luxury Beauty Salon',
   description: 'Experience luxury hair extensions, beauty treatments, and professional styling at So Bella Hair & Beauty Lounge. Book your appointment today.',
   keywords: 'hair extensions, beauty salon, lashes, brows, microblading, luxury beauty, hair treatment',
@@ -27,7 +28,12 @@ export const metadata: Metadata = {
     description: 'Luxury Hair & Beauty Experience',
     images: ['/images/og-image.jpg'],
   },
-  viewport: 'width=device-width, initial-scale=1.0, maximum-scale=5.0',
+}
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1.0,
+  maximumScale: 5.0,
 }
 
 export default function RootLayout({

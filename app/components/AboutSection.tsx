@@ -98,6 +98,9 @@ export default function AboutSection() {
                 As a solo stylist, I bring warmth, precision, and true personalization to each appointment. Your experience is calm, inviting, and crafted just for you.
               </p>
               <p className="text-lg leading-relaxed">
+                Based in Warrington, I also offer mobile appointments across surrounding areas, bringing luxury beauty directly to your home.
+              </p>
+              <p className="text-lg leading-relaxed">
                 From hair extensions and lashes to brows and beauty treatments, I help you walk out feeling radiant and ready for any occasion.
               </p>
             </motion.div>

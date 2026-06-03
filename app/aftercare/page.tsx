@@ -18,7 +18,7 @@ const aftercareItems = [
       • Be gentle when brushing - use a wide-tooth comb
       • Schedule regular maintenance appointments every 4-6 weeks
       • Avoid sleeping with wet hair
-      • Don't wear tight hairstyles that pull on the roots
+      • Don&apos;t wear tight hairstyles that pull on the roots
       • Keep the extensions away from extreme heat sources
       • Maintain regular conditioning treatments
       • Use only high-quality, sulfate-free products
@@ -183,11 +183,11 @@ export default function AftercareSection() {
             ⭐ Pro Tips for Extension Longevity
           </h3>
           <ul className="space-y-2 text-beauty-black/70">
-            <li>• The better you care for your extensions, the longer they'll last</li>
+              <li>• The better you care for your extensions, the longer they&apos;ll last</li>
             <li>• Most extensions can last 3-6 months with proper maintenance</li>
             <li>• Schedule your maintenance appointment before bonds loosen</li>
             <li>• Quality products make a significant difference</li>
-            <li>• Don't skip deep conditioning treatments</li>
+            <li>• Don&apos;t skip deep conditioning treatments</li>
             <li>• Contact us immediately if you notice any issues</li>
           </ul>
         </motion.div>
@@ -200,7 +200,7 @@ export default function AftercareSection() {
           className="text-center mt-16 space-y-4"
         >
           <p className="text-lg text-beauty-black/60">
-            Questions about aftercare? We're here to help!
+            Questions about aftercare? We&apos;re here to help!
           </p>
           <motion.a
             href="#contact"

@@ -12,9 +12,9 @@ export const SITE_CONFIG = {
   name: 'So Bella Hair & Beauty Lounge',
   tagline: 'Personal luxury beauty by a solo stylist',
   description: 'Personal luxury beauty services from a dedicated solo stylist—tailored hair and beauty that makes you feel radiant.',
-  email: 'hello@sobella.com',
-  phone: '(555) 123-4567',
-  address: '123 Beauty Street, NY 10001',
+  email: 'contact@sobella@gmail.com',
+  phone: '+44 7503 130010',
+  address: 'Warrington, Cheshire, UK',
   businessHours: {
     monday: 'Closed',
     tuesday: '10:00 AM - 8:00 PM',
@@ -196,14 +196,14 @@ export const SERVICES = [
   {
     id: 7,
     title: 'Mobile Appointments',
-    description: 'We come to you! Professional services at your location for ultimate convenience.',
+    description: 'We come to you! Professional beauty services at your location in Warrington and surrounding areas.',
     icon: '🚗',
     details: [
-      'In-home service',
-      'Full equipment setup',
-      'Same quality service',
-      'Flexible scheduling',
-      'Travel fee applicable',
+      'In-home service across Warrington and nearby towns',
+      'Full mobile salon equipment brought to you',
+      'Same luxury quality as the salon',
+      'Flexible scheduling for your busy day',
+      'Travel fee based on your area',
     ],
   },
 ]
@@ -366,8 +366,8 @@ export const FEATURES = {
 export const EMAIL_CONFIG = {
   fromName: 'So Bella Hair & Beauty Lounge',
   fromEmail: 'noreply@sobella.com',
-  replyTo: 'hello@sobella.com',
-  supportEmail: 'hello@sobella.com',
+  replyTo: 'contact@sobella@gmail.com',
+  supportEmail: 'contact@sobella@gmail.com',
 }
 
 // Supabase Configuration

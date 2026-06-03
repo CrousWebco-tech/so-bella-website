@@ -79,6 +79,29 @@ NEXT_PUBLIC_SUPPORT_EMAIL = hello@sobella.com
 
 Click "Next" to continue.
 
+### GitHub Actions / Provisioning Secrets
+
+This project includes an automated provisioning workflow for Supabase and Vercel.
+
+In GitHub, go to your repository:
+- Settings → Secrets and variables → Actions → New repository secret
+
+Add these secrets exactly as shown:
+
+```
+SUPABASE_URL
+SUPABASE_SERVICE_ROLE_KEY
+DATABASE_URL
+VERCEL_TOKEN
+```
+
+- `SUPABASE_URL`: Your Supabase project URL
+- `SUPABASE_SERVICE_ROLE_KEY`: Supabase service role key
+- `DATABASE_URL`: Postgres connection URL for your Supabase database
+- `VERCEL_TOKEN`: Vercel personal token with deploy permissions
+
+These secrets are used only by the GitHub workflow and are separate from the Vercel public environment variables.
+
 ### Step 5: Deploy
 
 Click **"Deploy"** and wait 1-2 minutes.

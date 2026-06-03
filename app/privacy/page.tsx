@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { SITE_CONFIG } from '../../lib/constants'
 
 export default function PrivacyPage() {
   return (
@@ -116,7 +117,7 @@ export default function PrivacyPage() {
               <li>Request a copy of your data</li>
             </ul>
             <p className="leading-relaxed">
-              To exercise any of these rights, please contact us at hello@sobella.com.
+              To exercise any of these rights, please contact us at {SITE_CONFIG.email}.
             </p>
           </motion.section>
 
@@ -148,8 +149,8 @@ export default function PrivacyPage() {
             </p>
             <div className="bg-blush/10 p-4 rounded-lg">
               <p className="font-semibold mb-2">So Bella Hair & Beauty Lounge</p>
-              <p>Email: hello@sobella.com</p>
-              <p>Phone: (555) 123-4567</p>
+              <p>Email: {SITE_CONFIG.email}</p>
+              <p>Phone: {SITE_CONFIG.phone}</p>
             </div>
           </motion.section>
 

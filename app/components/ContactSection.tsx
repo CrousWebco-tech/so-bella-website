@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { Mail, Phone, MapPin, Clock } from 'lucide-react'
 import { submitContactForm } from '../../lib/supabase'
+import { SITE_CONFIG } from '../../lib/constants'
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -50,19 +51,19 @@ export default function ContactSection() {
     {
       icon: Mail,
       label: 'Email',
-      value: 'hello@sobella.com',
-      href: 'mailto:hello@sobella.com',
+      value: SITE_CONFIG.email,
+      href: `mailto:${SITE_CONFIG.email}`,
     },
     {
       icon: Phone,
       label: 'Phone',
-      value: '(555) 123-4567',
-      href: 'tel:5551234567',
+      value: SITE_CONFIG.phone,
+      href: `tel:${SITE_CONFIG.phone.replace(/[^0-9+]/g, '')}`,
     },
     {
       icon: MapPin,
       label: 'Location',
-      value: '123 Beauty Street, NY 10001',
+      value: SITE_CONFIG.address,
       href: '#',
     },
     {
@@ -299,7 +300,7 @@ export default function ContactSection() {
                 </motion.button>
 
                 <p className="text-center text-sm text-beauty-black/60">
-                  We'll get back to you within 24 hours.
+                  We&apos;ll get back to you within 24 hours.
                 </p>
               </form>
             )}
