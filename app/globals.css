@@ -20,9 +20,11 @@ html {
 }
 
 body {
-  background-color: #faf9f7;
-  color: #1a1a1a;
+  background-color: #fbf6f1;
+  color: #2a221e;
   font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 /* Luxury glassmorphism effect */
@@ -39,13 +41,13 @@ body {
   @apply bg-gradient-to-r from-gold to-gold-light bg-clip-text text-transparent;
 }
 
-/* Luxury shadows */
+/* Luxury shadows — soft and warm */
 .shadow-luxury {
-  @apply shadow-xl shadow-black/10;
+  box-shadow: 0 10px 30px -12px rgba(120, 80, 50, 0.18);
 }
 
 .shadow-luxury-lg {
-  @apply shadow-2xl shadow-black/15;
+  box-shadow: 0 24px 60px -18px rgba(120, 80, 50, 0.28);
 }
 
 /* Smooth transitions */
@@ -66,6 +68,15 @@ body {
   }
 }
 
+/* Hide scrollbar for horizontal tab strips on mobile */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -73,14 +84,14 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f5e6e0;
+  background: #f7e6dd;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d4af7a;
+  background: #cba06a;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #c99563;
+  background: #b8884f;
 }

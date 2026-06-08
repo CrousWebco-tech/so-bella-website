@@ -2,8 +2,11 @@
 
 import { motion } from 'framer-motion'
 import { HERO_CONTENT } from '../../lib/constants'
+import { useSiteContent, useWhatsAppUrl } from './SiteContentProvider'
 
 export default function HeroSection() {
+  const content = useSiteContent()
+  const whatsappUrl = useWhatsAppUrl("Hi! I'd love to book an appointment.")
   return (
     <section
       id="home"
@@ -25,7 +28,7 @@ export default function HeroSection() {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-screen lg:min-h-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center py-12 lg:py-0 lg:min-h-0">
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -41,7 +44,7 @@ export default function HeroSection() {
               className="inline-block"
             >
               <span className="px-4 py-2 bg-blush/70 rounded-full text-sm font-semibold text-beauty-black">
-                {HERO_CONTENT.tagline}
+                {content.hero.tagline}
               </span>
             </motion.div>
 
@@ -50,9 +53,9 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-beauty-black leading-tight"
+              className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-beauty-black leading-tight"
             >
-              {HERO_CONTENT.headline}
+              {content.hero.headline}
               <span className="gradient-text"> {HERO_CONTENT.headlineAccent}</span>
             </motion.h1>
 
@@ -88,22 +91,25 @@ export default function HeroSection() {
               transition={{ delay: 0.65 }}
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
-              <motion.button
+              <motion.a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 md:py-4 bg-gradient-luxury text-beauty-black font-semibold rounded-full shadow-luxury hover:shadow-luxury-lg transition-luxury text-lg"
+                className="px-8 py-3 md:py-4 bg-gradient-luxury text-beauty-black font-semibold rounded-full shadow-luxury hover:shadow-luxury-lg transition-luxury text-lg text-center"
               >
-                {HERO_CONTENT.primaryCta}
-              </motion.button>
+                {content.hero.primaryCta}
+              </motion.a>
               <motion.a
-                href={`https://wa.me/${(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '1234567890').replace(/[^0-9]/g, '').replace(/^0+/, '')}`}
+                href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-3 md:py-4 border-2 border-gold text-gold font-semibold rounded-full hover:bg-gold hover:text-beauty-black transition-luxury text-lg text-center"
               >
-                {HERO_CONTENT.secondaryCta}
+                {content.hero.secondaryCta}
               </motion.a>
             </motion.div>
 

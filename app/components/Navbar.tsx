@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { useWhatsAppUrl } from './SiteContentProvider'
 
 // Navigation links configuration
 const navLinks = [
@@ -19,6 +20,7 @@ const navLinks = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const whatsappUrl = useWhatsAppUrl("Hi! I'd love to book an appointment.")
 
   const toggleMenu = () => setIsOpen(!isOpen)
 
@@ -40,7 +42,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 group">
             <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-luxury rounded-full flex items-center justify-center shadow-luxury">
-              <span className="text-white font-serif text-lg font-bold">S</span>
+              <span className="text-beauty-black font-serif text-lg font-bold">S</span>
             </div>
             <div className="hidden md:block">
               <h1 className="font-serif text-lg font-bold text-beauty-black group-hover:text-gold transition-luxury">
@@ -66,13 +68,16 @@ export default function Navbar() {
           {/* CTA Button & Menu Toggle */}
           <div className="flex items-center space-x-4">
             {/* Book Now Button - Desktop */}
-            <motion.button
+            <motion.a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="hidden md:inline-block px-6 py-2 bg-gradient-luxury text-beauty-black font-semibold rounded-full shadow-luxury hover:shadow-luxury-lg transition-luxury"
             >
               Book Now
-            </motion.button>
+            </motion.a>
 
             {/* Mobile Menu Toggle */}
             <button
@@ -113,15 +118,19 @@ export default function Navbar() {
             ))}
             
             {/* Mobile CTA */}
-            <motion.button
+            <motion.a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               variants={itemVariants}
               initial="closed"
               animate="open"
               transition={{ delay: navLinks.length * 0.05 }}
-              className="w-full mt-4 px-6 py-2 bg-gradient-luxury text-beauty-black font-semibold rounded-full shadow-luxury"
+              onClick={() => setIsOpen(false)}
+              className="block text-center w-full mt-4 px-6 py-3 bg-gradient-luxury text-beauty-black font-semibold rounded-full shadow-luxury"
             >
               Book Now
-            </motion.button>
+            </motion.a>
           </motion.div>
         )}
       </div>

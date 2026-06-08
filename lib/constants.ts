@@ -12,7 +12,7 @@ export const SITE_CONFIG = {
   name: 'So Bella Hair & Beauty Lounge',
   tagline: 'Personal luxury beauty by a solo stylist',
   description: 'Personal luxury beauty services from a dedicated solo stylist—tailored hair and beauty that makes you feel radiant.',
-  email: 'contact@sobella@gmail.com',
+  email: 'contact.sobella@gmail.com',
   phone: '+44 7503 130010',
   address: 'Warrington, Cheshire, UK',
   businessHours: {
@@ -366,8 +366,8 @@ export const FEATURES = {
 export const EMAIL_CONFIG = {
   fromName: 'So Bella Hair & Beauty Lounge',
   fromEmail: 'noreply@sobella.com',
-  replyTo: 'contact@sobella@gmail.com',
-  supportEmail: 'contact@sobella@gmail.com',
+  replyTo: 'contact.sobella@gmail.com',
+  supportEmail: 'contact.sobella@gmail.com',
 }
 
 // Supabase Configuration

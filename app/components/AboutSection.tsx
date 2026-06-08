@@ -1,8 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useWhatsAppUrl } from './SiteContentProvider'
 
 export default function AboutSection() {
+  const whatsappUrl = useWhatsAppUrl("Hi! I'd love to book an appointment.")
   return (
     <section
       id="about"
@@ -126,17 +128,20 @@ export default function AboutSection() {
             </motion.div>
 
             {/* CTA */}
-            <motion.button
+            <motion.a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
               viewport={{ once: true }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-gradient-luxury text-beauty-black font-semibold rounded-full shadow-luxury hover:shadow-luxury-lg transition-luxury"
+              className="inline-block px-8 py-3 bg-gradient-luxury text-beauty-black font-semibold rounded-full shadow-luxury hover:shadow-luxury-lg transition-luxury"
             >
               Book Your Appointment
-            </motion.button>
+            </motion.a>
           </motion.div>
         </div>
       </div>

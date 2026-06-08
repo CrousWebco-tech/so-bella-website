@@ -1,29 +1,19 @@
 'use client'
 
-import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { FaTiktok, FaFacebook, FaInstagram } from 'react-icons/fa'
-
-const socialLinks = [
-  {
-    name: 'TikTok',
-    url: 'https://www.tiktok.com/@so.bella.hair.bea',
-    icon: FaTiktok,
-  },
-  {
-    name: 'Facebook',
-    url: 'https://www.facebook.com/share/1F5JiMmEbE/?mibextid=wwXIfr',
-    icon: FaFacebook,
-  },
-  {
-    name: 'Instagram',
-    url: 'https://www.instagram.com/so.bella.hair.beauty.lounge',
-    icon: FaInstagram,
-  },
-]
+import { useSiteContent, useWhatsAppUrl } from './SiteContentProvider'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
+  const content = useSiteContent()
+  const whatsappUrl = useWhatsAppUrl("Hi! I'd love to book an appointment.")
+
+  const socialLinks = [
+    { name: 'TikTok', url: content.social.tiktok, icon: FaTiktok },
+    { name: 'Facebook', url: content.social.facebook, icon: FaFacebook },
+    { name: 'Instagram', url: content.social.instagram, icon: FaInstagram },
+  ]
 
   return (
     <footer className="bg-beauty-black text-beauty-white">
@@ -129,13 +119,16 @@ export default function Footer() {
                 )
               })}
             </div>
-            <motion.button
+            <motion.a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-full mt-4 px-4 py-2 bg-gradient-luxury text-beauty-black font-semibold rounded-full shadow-luxury hover:shadow-luxury-lg transition-luxury text-sm"
+              className="block text-center w-full mt-4 px-4 py-2 bg-gradient-luxury text-beauty-black font-semibold rounded-full shadow-luxury hover:shadow-luxury-lg transition-luxury text-sm"
             >
               Book Appointment
-            </motion.button>
+            </motion.a>
           </motion.div>
         </div>
 

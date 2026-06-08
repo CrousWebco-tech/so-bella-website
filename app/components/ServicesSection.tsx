@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { ChevronDown } from 'lucide-react'
+import { useWhatsAppUrl } from './SiteContentProvider'
 
 // Services data configuration - easy to edit
 const servicesData = [
@@ -101,6 +102,7 @@ const servicesData = [
 
 export default function ServicesSection() {
   const [expandedService, setExpandedService] = useState<number | null>(null)
+  const whatsappUrl = useWhatsAppUrl("Hi! I'd love to book an appointment.")
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -194,9 +196,15 @@ export default function ServicesSection() {
 
                   {/* CTA and expand button */}
                   <div className="space-y-3 pt-4 border-t border-gold/10">
-                    <button className="w-full px-4 py-2 bg-gradient-luxury text-beauty-black font-semibold text-sm rounded-full hover:shadow-luxury transition-luxury">
+                    <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="block text-center w-full px-4 py-2 bg-gradient-luxury text-beauty-black font-semibold text-sm rounded-full hover:shadow-luxury transition-luxury"
+                    >
                       Book Now
-                    </button>
+                    </a>
 
                     {/* Expandable Details */}
                     <motion.button
@@ -254,13 +262,16 @@ export default function ServicesSection() {
           <p className="text-lg text-beauty-black/60 mb-4">
             Don&apos;t see exactly what you need? Contact us for custom packages!
           </p>
-          <motion.button
+          <motion.a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-3 border-2 border-gold text-gold font-semibold rounded-full hover:bg-gold hover:text-beauty-black transition-luxury"
+            className="inline-block px-8 py-3 border-2 border-gold text-gold font-semibold rounded-full hover:bg-gold hover:text-beauty-black transition-luxury"
           >
             Get in Touch
-          </motion.button>
+          </motion.a>
         </motion.div>
       </div>
     </section>

@@ -4,9 +4,10 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { Mail, Phone, MapPin, Clock } from 'lucide-react'
 import { submitContactForm } from '../../lib/supabase'
-import { SITE_CONFIG } from '../../lib/constants'
+import { useSiteContent } from './SiteContentProvider'
 
 export default function ContactSection() {
+  const SITE_CONFIG = useSiteContent()
   const [formData, setFormData] = useState({
     name: '',
     email: '',

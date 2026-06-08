@@ -1,0 +1,48 @@
+────────────────────────────────────────
+READY-TO-SEND WHATSAPP MESSAGE
+────────────────────────────────────────
+How to use this:
+1. Deploy the site first (see DEPLOY-GUIDE.md) to get your live link.
+2. Replace the 3 [...] spots below with the real details.
+3. Copy everything between the lines and paste it into WhatsApp.
+   (WhatsApp turns *stars* into bold automatically.)
+────────────────────────────────────────
+
+
+Hi So Bella! 💖 Your new website is ready and live ✨
+
+*Your website:*
+[PASTE YOUR LIVE LINK HERE]
+
+You can edit it yourself anytime — add photos, change your hours, update your details — all from your phone. No tech skills needed.
+
+*To manage your site:*
+🔗 [PASTE YOUR LIVE LINK HERE]/admin
+📧 Login email: [HER EMAIL]
+🔑 Password: [HER TEMPORARY PASSWORD]
+
+(Tip: save the /admin page to your home screen so it's one tap away.)
+
+*The bit you'll use most — adding photos:*
+1. Open the link above and log in
+2. Tap the 🖼️ *Gallery* tab
+3. Pick a category, choose a photo from your phone, done — it shows on your site straight away ✨
+
+Every *Book Now* button on the site opens a WhatsApp chat with you, so clients can book in seconds.
+
+I've put together a simple step-by-step guide for everything else (hours, social links, your details) — want me to send that over too?
+
+Any questions at all, just message me. Enjoy your new website! 🥂
+
+
+────────────────────────────────────────
+SHORTER VERSION (if you prefer quick)
+────────────────────────────────────────
+
+Hi So Bella! 💖 Your website is live ✨
+
+*Site:* [PASTE LIVE LINK]
+*Manage it:* [PASTE LIVE LINK]/admin
+📧 [HER EMAIL]  🔑 [TEMP PASSWORD]
+
+You can add photos & edit everything from your phone — log in, tap *Gallery*, upload. The *Book Now* buttons open WhatsApp straight to you. Any questions, just ask! 🥂

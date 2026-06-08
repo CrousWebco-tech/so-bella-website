@@ -219,3 +219,53 @@ export async function uploadImage(file: File, folder = 'gallery') {
     return { success: false, error: err }
   }
 }
+
+/**
+ * Save a gallery image record so it appears on the public site.
+ */
+export async function addGalleryImage(data: {
+  title: string
+  category: string
+  image_url: string
+  description?: string
+  display_order?: number
+}) {
+  try {
+    if (!supabase) throw new Error('Supabase not configured')
+
+    const { data: result, error } = await supabase
+      .from('gallery_images')
+      .insert([
+        {
+          title: data.title,
+          category: data.category,
+          image_url: data.image_url,
+          description: data.description || '',
+          display_order: data.display_order ?? 0,
+          created_at: new Date().toISOString(),
+        },
+      ])
+      .select()
+
+    if (error) throw error
+    return { success: true, data: result }
+  } catch (err) {
+    console.error('addGalleryImage error', err)
+    return { success: false, error: err }
+  }
+}
+
+/**
+ * Delete a gallery image record by id.
+ */
+export async function deleteGalleryImage(id: string) {
+  try {
+    if (!supabase) throw new Error('Supabase not configured')
+    const { error } = await supabase.from('gallery_images').delete().eq('id', id)
+    if (error) throw error
+    return { success: true }
+  } catch (err) {
+    console.error('deleteGalleryImage error', err)
+    return { success: false, error: err }
+  }
+}

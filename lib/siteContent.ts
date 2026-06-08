@@ -5,6 +5,7 @@ export type SiteContent = {
   email?: string
   phone?: string
   address?: string
+  whatsapp?: string
   businessHours?: Record<string, string>
   hero?: {
     tagline?: string

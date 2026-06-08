@@ -4,30 +4,12 @@
   "outputDirectory": ".next",
   "installCommand": "npm install",
   "env": {
-    "NEXT_PUBLIC_SUPABASE_URL": {
-      "description": "Your Supabase project URL",
-      "placeholder": "https://xxxx.supabase.co"
-    },
-    "NEXT_PUBLIC_SUPABASE_ANON_KEY": {
-      "description": "Your Supabase anonymous key",
-      "placeholder": "eyJxx..."
-    },
-    "NEXT_PUBLIC_WHATSAPP_NUMBER": {
-      "description": "WhatsApp Business number with country code",
-      "placeholder": "14155552671"
-    },
-    "NEXT_PUBLIC_SITE_NAME": {
-      "description": "Your business name",
-      "placeholder": "So Bella Hair & Beauty Lounge"
-    },
-    "NEXT_PUBLIC_SITE_URL": {
-      "description": "Your website URL",
-      "placeholder": "https://sobella.com"
-    },
-    "NEXT_PUBLIC_SUPPORT_EMAIL": {
-      "description": "Support email address",
-      "placeholder": "hello@sobella.com"
-    }
+    "NEXT_PUBLIC_SUPABASE_URL": "https://xxxx.supabase.co",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "eyJxx...",
+    "NEXT_PUBLIC_WHATSAPP_NUMBER": "14155552671",
+    "NEXT_PUBLIC_SITE_NAME": "So Bella Hair & Beauty Lounge",
+    "NEXT_PUBLIC_SITE_URL": "https://sobella.com",
+    "NEXT_PUBLIC_SUPPORT_EMAIL": "hello@sobella.com"
   },
   "headers": [
     {

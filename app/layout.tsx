@@ -3,6 +3,7 @@ import './globals.css'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
+import SiteContentProvider from './components/SiteContentProvider'
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://sobella.com'),
@@ -60,19 +61,21 @@ export default function RootLayout({
         )}
       </head>
       <body className="bg-beauty-white text-beauty-black">
-        {/* Navigation */}
-        <Navbar />
-        
-        {/* Main Content */}
-        <main className="relative overflow-hidden">
-          {children}
-        </main>
+        <SiteContentProvider>
+          {/* Navigation */}
+          <Navbar />
 
-        {/* Floating WhatsApp Button */}
-        <WhatsAppButton />
+          {/* Main Content */}
+          <main className="relative overflow-hidden">
+            {children}
+          </main>
 
-        {/* Footer */}
-        <Footer />
+          {/* Floating WhatsApp Button */}
+          <WhatsAppButton />
+
+          {/* Footer */}
+          <Footer />
+        </SiteContentProvider>
       </body>
     </html>
   )

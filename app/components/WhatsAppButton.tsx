@@ -2,14 +2,10 @@
 
 import { FaWhatsapp } from 'react-icons/fa'
 import { motion } from 'framer-motion'
+import { useWhatsAppUrl } from './SiteContentProvider'
 
 export default function WhatsAppButton() {
-  // Get WhatsApp number from environment or use placeholder
-  const rawNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '1234567890'
-
-  // Normalize number for wa.me (digits only, drop any leading +)
-  const normalized = rawNumber.replace(/[^0-9]/g, '').replace(/^0+/, '')
-  const whatsappUrl = `https://wa.me/${normalized}`
+  const whatsappUrl = useWhatsAppUrl("Hi! I'd love to book an appointment.")
 
   return (
     <motion.a

@@ -8,15 +8,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Luxury salon color palette
-        'blush': '#f5e6e0',
-        'blush-dark': '#e8ccc2',
-        'nude': '#e8d4c4',
-        'nude-dark': '#d4b5a0',
-        'gold': '#d4af7a',
-        'gold-light': '#e8c9a0',
-        'beauty-black': '#1a1a1a',
-        'beauty-white': '#faf9f7',
+        // Warm, soft luxury salon palette
+        'blush': '#f7e6dd',
+        'blush-dark': '#eecdbf',
+        'nude': '#ecdbca',
+        'nude-dark': '#dab79d',
+        'cream': '#fbf3ec',
+        'gold': '#cba06a',
+        'gold-light': '#e7c79b',
+        'beauty-black': '#2a221e',
+        'beauty-white': '#fbf6f1',
       },
       fontFamily: {
         // Luxury typography
@@ -24,8 +25,9 @@ const config: Config = {
         serif: ['var(--font-serif)', 'system-ui', 'serif'],
       },
       backgroundImage: {
-        'gradient-luxury': 'linear-gradient(135deg, #f5e6e0 0%, #e8d4c4 100%)',
-        'gradient-dark': 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)',
+        'gradient-luxury': 'linear-gradient(135deg, #f7e6dd 0%, #ecdbca 55%, #e7c79b 100%)',
+        'gradient-warm': 'linear-gradient(135deg, #fbf3ec 0%, #f7e6dd 100%)',
+        'gradient-dark': 'linear-gradient(135deg, #2a221e 0%, #3a322c 100%)',
       },
       backdropBlur: {
         xs: '2px',

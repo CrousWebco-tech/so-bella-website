@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { X } from 'lucide-react'
 import { getGalleryImages } from '../../lib/supabase'
 import { GALLERY_SETTINGS } from '../../lib/constants'
+import { useWhatsAppUrl } from './SiteContentProvider'
 
 type GalleryImageItem = {
   id: string
@@ -21,6 +22,7 @@ export default function GallerySection() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [loading, setLoading] = useState(false)
+  const whatsappUrl = useWhatsAppUrl("Hi! I'd love to book an appointment.")
 
   useEffect(() => {
     async function fetchGallery() {
@@ -205,13 +207,16 @@ export default function GallerySection() {
           <p className="text-lg text-beauty-black/60 mb-4">
             Inspired by our work? Book your transformation today!
           </p>
-          <motion.button
+          <motion.a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-3 bg-gradient-luxury text-beauty-black font-semibold rounded-full shadow-luxury hover:shadow-luxury-lg transition-luxury"
+            className="inline-block px-8 py-3 bg-gradient-luxury text-beauty-black font-semibold rounded-full shadow-luxury hover:shadow-luxury-lg transition-luxury"
           >
             Book Your Look
-          </motion.button>
+          </motion.a>
         </motion.div>
       </div>
     </section>

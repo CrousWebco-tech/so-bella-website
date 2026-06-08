@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { SITE_CONFIG, HERO_CONTENT } from '../../../lib/constants'
+import { SITE_CONFIG, HERO_CONTENT, SOCIAL_LINKS, GALLERY_SETTINGS } from '../../../lib/constants'
 import { supabase } from '../../../lib/supabase'
+import { isAdminEmail } from '../../../lib/admin'
 import { getSiteContent, upsertSiteContent, SiteContent } from '../../../lib/siteContent'
 
 export default function AdminDashboard() {
@@ -12,6 +13,16 @@ export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState<'business' | 'hero' | 'services' | 'social' | 'gallery'>('business')
   const [saved, setSaved] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [galleryImages, setGalleryImages] = useState<Array<{ id: string; title: string; category: string; image_url: string }>>([])
+  const [galleryCategory, setGalleryCategory] = useState('Hair Extensions')
+  const [galleryTitle, setGalleryTitle] = useState('')
+  const [galleryUploading, setGalleryUploading] = useState(false)
+
+  const refreshGallery = async () => {
+    const { getGalleryImages } = await import('../../../lib/supabase')
+    const res = await getGalleryImages()
+    if (res.success && res.data) setGalleryImages(res.data as typeof galleryImages)
+  }
 
   useEffect(() => {
     let mounted = true
@@ -28,6 +39,13 @@ export default function AdminDashboard() {
         return
       }
 
+      // Enforce the admin allowlist even if a session exists.
+      if (!isAdminEmail(session.user?.email)) {
+        await supabase.auth.signOut()
+        router.push('/admin')
+        return
+      }
+
       if (mounted) setAuthorized(true)
 
       // load site content from Supabase
@@ -40,6 +58,7 @@ export default function AdminDashboard() {
           email: content.email || prev.email,
           phone: content.phone || prev.phone,
           address: content.address || prev.address,
+          whatsapp: content.whatsapp || prev.whatsapp,
           mondayHours: content.businessHours?.monday || prev.mondayHours,
           tuesdayHours: content.businessHours?.tuesday || prev.tuesdayHours,
           wednesdayHours: content.businessHours?.wednesday || prev.wednesdayHours,
@@ -55,6 +74,13 @@ export default function AdminDashboard() {
           facebook: content.social?.facebook || prev.facebook,
           tiktok: content.social?.tiktok || prev.tiktok,
         }))
+      }
+
+      // Load existing gallery images so the owner can see/delete them.
+      const { getGalleryImages } = await import('../../../lib/supabase')
+      const gres = await getGalleryImages()
+      if (mounted && gres.success && gres.data) {
+        setGalleryImages(gres.data as Array<{ id: string; title: string; category: string; image_url: string }>)
       }
 
       setLoading(false)
@@ -75,6 +101,7 @@ export default function AdminDashboard() {
     email: SITE_CONFIG.email,
     phone: SITE_CONFIG.phone,
     address: SITE_CONFIG.address,
+    whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || SITE_CONFIG.phone,
     mondayHours: SITE_CONFIG.businessHours.monday,
     tuesdayHours: SITE_CONFIG.businessHours.tuesday,
     wednesdayHours: SITE_CONFIG.businessHours.wednesday,
@@ -86,9 +113,9 @@ export default function AdminDashboard() {
     heroHeadline: HERO_CONTENT.headline,
     heroPrimaryCta: HERO_CONTENT.primaryCta,
     heroSecondaryCta: HERO_CONTENT.secondaryCta,
-    instagram: 'https://www.instagram.com/so.bella.hair.beauty.lounge',
-    facebook: 'https://www.facebook.com/share/1F5JiMmEbE/',
-    tiktok: 'https://www.tiktok.com/@so.bella.hair.bea',
+    instagram: SOCIAL_LINKS.instagram,
+    facebook: SOCIAL_LINKS.facebook,
+    tiktok: SOCIAL_LINKS.tiktok,
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -104,6 +131,7 @@ export default function AdminDashboard() {
       email: formData.email,
       phone: formData.phone,
       address: formData.address,
+      whatsapp: formData.whatsapp,
       businessHours: {
         monday: formData.mondayHours,
         tuesday: formData.tuesdayHours,
@@ -153,8 +181,8 @@ export default function AdminDashboard() {
       </div>
 
       {/* Tabs */}
-      <div className="border-b border-gold/10 px-6">
-        <div className="flex gap-8">
+      <div className="border-b border-gold/10 px-4 sm:px-6">
+        <div className="flex gap-4 sm:gap-8 overflow-x-auto no-scrollbar">
           {[
             { key: 'business', label: '🏢 Business Info' },
             { key: 'hero', label: '✨ Hero Section' },
@@ -165,7 +193,7 @@ export default function AdminDashboard() {
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key as any)}
-              className={`py-4 px-2 border-b-2 font-semibold transition-all ${
+              className={`py-4 px-2 border-b-2 font-semibold transition-all whitespace-nowrap text-sm sm:text-base ${
                 activeTab === tab.key
                   ? 'border-gold text-beauty-black'
                   : 'border-transparent text-beauty-black/60 hover:text-beauty-black'
@@ -178,7 +206,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Content */}
-      <div className="max-w-2xl mx-auto p-6">
+      <div className="max-w-2xl mx-auto p-4 sm:p-6">
         {/* Business Info */}
         {activeTab === 'business' && (
           <div className="space-y-6">
@@ -216,6 +244,19 @@ export default function AdminDashboard() {
                   onChange={handleChange}
                   className="w-full px-4 py-2 border border-gold/20 rounded-lg focus:outline-none focus:border-gold"
                 />
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-beauty-black mb-1">WhatsApp Number (for Book Now buttons)</label>
+                <input
+                  type="tel"
+                  name="whatsapp"
+                  value={formData.whatsapp}
+                  onChange={handleChange}
+                  placeholder="+44 7503 130010"
+                  className="w-full px-4 py-2 border border-gold/20 rounded-lg focus:outline-none focus:border-gold"
+                />
+                <p className="text-xs text-beauty-black/50 mt-1">Include country code. This is where all &quot;Book Now&quot; buttons send clients.</p>
               </div>
 
               <div>
@@ -319,37 +360,103 @@ export default function AdminDashboard() {
         {activeTab === 'gallery' && (
           <div className="space-y-6">
             <h2 className="font-serif text-2xl font-bold text-beauty-black">Gallery</h2>
+            <p className="text-beauty-black/60 text-sm">Add a photo and it appears on your website straight away. Pick a category, then choose a photo from your phone or computer.</p>
 
-            <div className="space-y-4">
-              <p className="text-beauty-black/60 text-sm">Upload images to the gallery. Images are stored in Supabase storage.</p>
+            <div className="space-y-4 bg-blush/15 border border-gold/10 rounded-2xl p-4">
+              <div>
+                <label className="block text-sm font-semibold text-beauty-black mb-1">Category</label>
+                <select
+                  value={galleryCategory}
+                  onChange={(e) => setGalleryCategory(e.target.value)}
+                  className="w-full px-4 py-2 border border-gold/20 rounded-lg focus:outline-none focus:border-gold text-sm bg-white"
+                >
+                  {GALLERY_SETTINGS.categories.filter((c) => c !== 'All').map((c) => (
+                    <option key={c} value={c}>{c}</option>
+                  ))}
+                </select>
+              </div>
 
               <div>
+                <label className="block text-sm font-semibold text-beauty-black mb-1">Title (optional)</label>
+                <input
+                  type="text"
+                  value={galleryTitle}
+                  onChange={(e) => setGalleryTitle(e.target.value)}
+                  placeholder="e.g. Balayage blonde"
+                  className="w-full px-4 py-2 border border-gold/20 rounded-lg focus:outline-none focus:border-gold text-sm"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-beauty-black mb-1">Choose photo</label>
                 <input
                   type="file"
                   accept="image/*"
                   id="galleryUpload"
+                  disabled={galleryUploading}
                   onChange={async (e) => {
                     const file = e.target.files?.[0]
                     if (!file) return
-                    // dynamically import helper to avoid SSR issues
-                    const mod = await import('../../../lib/supabase')
-                    const sup = mod.supabase
-                    if (!sup) {
-                      alert('Supabase not configured')
-                      return
-                    }
-
-                    const { uploadImage } = await import('../../../lib/supabase')
-                    const res = await uploadImage(file)
-                    if (res.success) {
-                      alert('Uploaded! URL: ' + res.url)
-                    } else {
-                      alert('Upload failed; check console')
+                    setGalleryUploading(true)
+                    try {
+                      const { uploadImage, addGalleryImage } = await import('../../../lib/supabase')
+                      const up = await uploadImage(file)
+                      if (!up.success || !up.url) {
+                        alert('Upload failed; please try again.')
+                        return
+                      }
+                      const add = await addGalleryImage({
+                        title: galleryTitle || galleryCategory,
+                        category: galleryCategory,
+                        image_url: up.url,
+                        display_order: galleryImages.length,
+                      })
+                      if (!add.success) {
+                        alert('Photo uploaded but could not be saved to the gallery.')
+                        return
+                      }
+                      setGalleryTitle('')
+                      await refreshGallery()
+                      alert('Added to your gallery!')
+                    } finally {
+                      setGalleryUploading(false)
+                      e.target.value = ''
                     }
                   }}
-                  className=""
+                  className="text-sm"
                 />
+                {galleryUploading && <p className="text-sm text-gold mt-2">Uploading…</p>}
               </div>
+            </div>
+
+            <div>
+              <h3 className="font-semibold text-beauty-black mb-3">Your photos ({galleryImages.length})</h3>
+              {galleryImages.length === 0 ? (
+                <p className="text-beauty-black/50 text-sm">No photos yet. Add your first one above.</p>
+              ) : (
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  {galleryImages.map((img) => (
+                    <div key={img.id} className="relative group rounded-xl overflow-hidden border border-gold/10">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={img.image_url} alt={img.title} className="w-full h-32 object-cover" />
+                      <div className="absolute inset-x-0 bottom-0 bg-beauty-black/60 text-beauty-white text-xs px-2 py-1 truncate">{img.title}</div>
+                      <button
+                        onClick={async () => {
+                          if (!confirm('Remove this photo?')) return
+                          const { deleteGalleryImage } = await import('../../../lib/supabase')
+                          const res = await deleteGalleryImage(img.id)
+                          if (res.success) await refreshGallery()
+                          else alert('Could not delete; please try again.')
+                        }}
+                        className="absolute top-1 right-1 bg-beauty-white/90 text-red-600 rounded-full w-6 h-6 text-sm font-bold shadow flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                        aria-label="Delete photo"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         )}
