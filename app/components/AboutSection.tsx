@@ -27,18 +27,19 @@ export default function AboutSection() {
             viewport={{ once: true }}
             className="relative"
           >
-            {/* Owner Image Placeholder */}
-            <div className="relative rounded-2xl overflow-hidden shadow-luxury-lg h-96 md:h-full bg-gradient-to-br from-gold/20 via-blush/10 to-beauty-white flex items-center justify-center group">
-              <div className="text-center space-y-4 px-6">
-                <div className="text-6xl">👑</div>
-                <p className="text-beauty-black/60 font-semibold">
-                  Solo Stylist Photo Placeholder
-                </p>
-                <p className="text-sm text-beauty-black/40">
-                  Replace with your signature portrait.
-                </p>
+            {/* Owner portrait — elegant framed panel (holds her photo when added) */}
+            <div className="relative rounded-2xl overflow-hidden shadow-luxury-lg h-96 md:h-[30rem] bg-gradient-to-br from-nude-dark/30 via-blush/20 to-cream flex items-center justify-center group">
+              <div className="absolute -top-12 -left-12 w-56 h-56 rounded-full border border-gold/15" />
+              <div className="absolute -bottom-16 -right-10 w-64 h-64 rounded-full border border-gold/10" />
+              <div className="relative text-center px-8">
+                <div className="mx-auto mb-5 w-20 h-20 rounded-full bg-beauty-white/80 border border-gold/30 flex items-center justify-center shadow-luxury">
+                  <span className="font-serif text-3xl font-bold text-gold">SB</span>
+                </div>
+                <p className="font-serif italic text-2xl text-beauty-black">So Bella</p>
+                <div className="mx-auto my-3 h-px w-16 bg-gradient-to-r from-transparent via-gold to-transparent" />
+                <p className="uppercase tracking-[0.25em] text-xs text-beauty-black/50">Your solo stylist</p>
               </div>
-              <div className="absolute inset-0 border-2 border-white/30 rounded-2xl group-hover:border-gold/50 transition-luxury" />
+              <div className="absolute inset-4 border border-gold/25 rounded-xl group-hover:border-gold/50 transition-luxury" />
             </div>
 
             {/* Decorative accent */}

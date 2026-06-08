@@ -88,14 +88,14 @@ const servicesData = [
   {
     id: 7,
     title: 'Mobile Appointments',
-    description: 'We come to you! Professional services at your location for ultimate convenience.',
+    description: 'I come to you across Warrington and nearby — the same luxury treatment, in the comfort of your own home.',
     icon: '🚗',
     details: [
-      'In-home service',
-      'Full equipment setup',
-      'Same quality service',
-      'Flexible scheduling',
-      'Travel fee applicable',
+      'In-home service across Warrington & nearby',
+      'Full mobile salon brought to you',
+      'The same luxury as the salon',
+      'Flexible scheduling around your day',
+      'Small travel fee based on your area',
     ],
   },
 ]
@@ -146,13 +146,13 @@ export default function ServicesSection() {
           className="text-center mb-16 space-y-4"
         >
           <span className="inline-block px-4 py-2 bg-blush/40 rounded-full text-sm font-semibold text-beauty-black">
-            Our Services
+            What I Offer
           </span>
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-beauty-black">
-            Luxury Services For Every Need
+            Beauty, tailored to you
           </h2>
           <p className="text-lg text-beauty-black/60 max-w-2xl mx-auto">
-            Comprehensive beauty and hair services designed to make you feel absolutely beautiful
+            Hair and beauty services crafted one-on-one, so every appointment feels personal — and you leave feeling your most radiant.
           </p>
         </motion.div>
 
@@ -260,7 +260,7 @@ export default function ServicesSection() {
           className="text-center mt-16"
         >
           <p className="text-lg text-beauty-black/60 mb-4">
-            Don&apos;t see exactly what you need? Contact us for custom packages!
+            Looking for something specific? Message me and we&apos;ll create the perfect appointment for you.
           </p>
           <motion.a
             href={whatsappUrl}

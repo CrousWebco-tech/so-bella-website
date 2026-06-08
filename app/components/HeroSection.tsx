@@ -147,11 +147,16 @@ export default function HeroSection() {
             {HERO_CONTENT.heroImageSrc ? (
               <div className="absolute inset-0 bg-beauty-black/25" />
             ) : (
-              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gold/15 via-blush/10 to-beauty-white">
-                <div className="text-center space-y-4 px-6">
-                  <div className="text-6xl">✨</div>
-                  <p className="text-beauty-black/70 font-semibold">Your luxury salon photo belongs here.</p>
-                  <p className="text-sm text-beauty-black/40">Show off the glow, soft textures, and salon artistry.</p>
+              <div className="absolute inset-0 flex items-center justify-center overflow-hidden bg-gradient-to-br from-nude-dark/30 via-blush/25 to-cream">
+                {/* Soft layered rings for an elegant, intentional look */}
+                <div className="absolute -top-16 -right-16 w-72 h-72 rounded-full border border-gold/20" />
+                <div className="absolute -bottom-20 -left-12 w-80 h-80 rounded-full border border-gold/10" />
+                <div className="relative text-center px-8">
+                  <p className="font-serif italic text-gold/80 text-lg mb-1">welcome to</p>
+                  <p className="font-serif text-5xl md:text-6xl font-bold text-beauty-black leading-none">So Bella</p>
+                  <div className="mx-auto my-4 h-px w-20 bg-gradient-to-r from-transparent via-gold to-transparent" />
+                  <p className="uppercase tracking-[0.3em] text-xs text-beauty-black/50">Hair &amp; Beauty Lounge</p>
+                  <p className="mt-3 text-sm text-beauty-black/45">Warrington · By appointment</p>
                 </div>
               </div>
             )}
@@ -165,8 +170,8 @@ export default function HeroSection() {
               transition={{ duration: 3, repeat: Infinity }}
               className="absolute bottom-8 left-8 right-8 bg-beauty-white/95 backdrop-blur rounded-xl p-5 shadow-luxury"
             >
-              <p className="font-semibold text-beauty-black text-center">
-                ✨ Your signature beauty moment starts here.
+              <p className="font-serif text-beauty-black text-center text-lg">
+                One stylist. Undivided attention. Beautifully you.
               </p>
             </motion.div>
           </div>
