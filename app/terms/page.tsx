@@ -4,253 +4,66 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 
-// Terms & Conditions content
+// Terms & Conditions content — So Bella Hair & Beauty Lounge
 const termsItems = [
   {
     id: 1,
     title: 'Booking & Deposits',
     content: `
-      BOOKING POLICY:
-      • Appointments must be booked 24 hours in advance
-      • Bookings are confirmed upon receipt of payment
-      • A non-refundable deposit of 50% is required to secure your booking
-      • The remaining balance is due on the day of service
-      • All services are by appointment only
-
-      DEPOSIT INFORMATION:
-      • Deposits are non-refundable but can be transferred to another appointment
-      • Deposits are valid for 90 days from booking date
-      • If you reschedule, the deposit remains valid for the new date
-      • Deposits do not transfer to other clients
-      • Payment plans may be available for larger services
-
-      BOOKING MODIFICATIONS:
-      • Changes must be made at least 48 hours in advance
-      • Changes after 48 hours may incur additional fees
-      • No show without cancellation will forfeit your deposit
-      • We will attempt to contact you 24 hours before appointment as a reminder
+      • A deposit is required to secure all appointments.
+      • A non-refundable deposit will be taken at the time of booking.
+      • Appointments are not confirmed until the deposit has been received.
+      • The deposit will be deducted from your final balance.
     `,
   },
   {
     id: 2,
-    title: 'Cancellations',
+    title: 'Cancellations & Rescheduling',
     content: `
-      CANCELLATION POLICY:
-      • Cancellations must be made at least 48 hours in advance
-      • Cancellations made with less than 48 hours notice forfeit deposit
-      • Full refund available if cancelled with 48+ hours notice
-      • Cancellations must be submitted in writing via email or phone
-
-      RESCHEDULING:
-      • Rescheduling is permitted with 48 hours notice
-      • Your deposit transfers to the new appointment date
-      • Rescheduling after 48 hours may incur a fee
-      • Limited availability may affect rescheduling options
-
-      NO-SHOW POLICY:
-      • Missing an appointment without prior cancellation results in loss of deposit
-      • You will be charged the full service amount if deposit only was paid
-      • Two no-shows may result in account suspension
-      • We may require full prepayment for future bookings
+      • I kindly ask for at least 24 hours' notice for any cancellations or changes.
+      • Cancellations within 24 hours will result in loss of deposit.
+      • No-shows will be charged 100% of the appointment cost.
+      • Repeated no-shows may result in refusal of future bookings.
     `,
   },
   {
     id: 3,
     title: 'Payments',
     content: `
-      PAYMENT METHODS:
-      • Cash
-      • Credit/Debit Cards (Visa, Mastercard, American Express)
-      • Bank transfers
-      • Digital payment apps (accepted options listed in contact section)
-
-      PAYMENT TERMS:
-      • 50% deposit due at time of booking
-      • Balance due on day of appointment
-      • Prices are in USD and subject to change with 30 days notice
-      • Taxes and fees are included in quoted prices
-      • Additional services will be charged separately
-
-      FAILED PAYMENTS:
-      • Failed payment attempts may result in cancellation
-      • You will be notified immediately of payment issues
-      • A retry fee may apply for failed transactions
-      • Future bookings may require prepayment
-
-      REFUND POLICY:
-      • Refunds available only for cancellations made 48+ hours in advance
-      • Refunds processed within 5-7 business days
-      • Non-refundable deposits cannot be refunded, only transferred
-      • Service refunds available only for dissatisfaction issues (see Service Guarantee)
+      • Remaining balances must be paid on the day of your appointment.
+      • Accepted payment methods: Cash & Bank Transfer.
+      • Late payments may result in refusal of future bookings.
     `,
   },
   {
     id: 4,
     title: 'Mobile Appointments',
     content: `
-      MOBILE SERVICE TERMS:
-      • Additional travel fee of $25-50 applies based on location
-      • Minimum service time of 2 hours required
-      • You must provide a clean, comfortable workspace
-      • Adequate lighting and mirrors must be available
-      • Power outlet within 10 feet of service area required
-
-      MOBILE BOOKING REQUIREMENTS:
-      • Mobile appointments require 72 hours advance booking
-      • Appointment time is strictly observed (±15 minute window)
-      • Multiple clients may be served during mobile visits (time permitting)
-      • Cancellation of mobile appointments: 72 hours minimum notice
-
-      CLIENT RESPONSIBILITIES (MOBILE):
-      • Ensure workspace is ready before stylist arrival
-      • Provide water and comfortable seating
-      • Have all necessary materials on hand (towels, etc.)
-      • Clear schedule for full appointment duration
-      • Reschedule if conditions become unsuitable
-
-      SERVICE RESTRICTIONS:
-      • No overnight treatments at client location
-      • Some services not available for mobile appointments
-      • Mobility issues don't affect quality or price of service
-      • Emergency supplies may incur additional costs
+      • Mobile services are available within 5 miles of WA2 free of charge.
+      • A £10 travel fee applies outside this area.
+      • A suitable workspace must be provided by the client.
     `,
   },
   {
     id: 5,
     title: 'Hair Extensions Policy',
     content: `
-      EXTENSION QUALITY:
-      • Only premium quality human hair is used
-      • Extensions are hand-tied using proven application methods
-      • Each installation is customized to your hair type and goals
-      • Quality is guaranteed for the duration of service
-
-      INSTALLATION:
-      • Consultation required before installation
-      • Application takes 2-4 hours depending on volume
-      • Maintenance appointments every 4-6 weeks recommended
-      • Touch-ups included in service package
-
-      EXTENSION AFTERCARE:
-      • Client must follow provided aftercare instructions
-      • Extensions require daily care and maintenance
-      • Products must be sulfate-free (provided list)
-      • Non-compliance with care may void service guarantee
-
-      EXTENSION DURATION:
-      • Extensions typically last 3-6 months with proper care
-      • Duration depends on your natural hair growth and care
-      • Regular maintenance appointments extend lifespan
-      • Extensions cannot be reused after removal
-
-      REMOVAL & REAPPLICATION:
-      • Professional removal required (included in new appointment)
-      • Extensions cannot be removed at home
-      • Hair must rest 2-4 weeks before reapplication
-      • New extensions required for each installation
+      • A consultation is required before booking any hair extension service.
+      • Hair must be paid for in advance before ordering.
+      • No refunds once hair has been ordered.
+      • Prices are provided after consultation (based on method, length & thickness).
+      • Maintenance appointments are the client's responsibility.
+      • I am not responsible for issues caused by poor aftercare.
     `,
   },
   {
     id: 6,
     title: 'Patch Testing & Allergies',
     content: `
-      PATCH TEST REQUIREMENT:
-      • All new clients must undergo patch testing
-      • Patch test must be completed 48 hours before service
-      • Testing fee: included in first service package
-      • Results determine which products can be used
-
-      ALLERGY MANAGEMENT:
-      • Disclose all known allergies before booking
-      • Bring documentation of allergies if available
-      • We use hypoallergenic alternatives when possible
-      • Some services may not be suitable for sensitive clients
-
-      REACTION PROCEDURES:
-      • If allergic reaction occurs, service will be stopped immediately
-      • Affected area will be treated with calming solutions
-      • Medical attention may be recommended
-      • You will not be charged for incomplete service
-      • Liability is limited to service refund only
-
-      SKIN CONDITIONS:
-      • Disclose any skin conditions or sensitivities
-      • Certain conditions may require medical clearance
-      • Service may be postponed if contraindicated
-      • Eczema, psoriasis, or open wounds may prevent service
-    `,
-  },
-  {
-    id: 7,
-    title: 'Service Guarantee',
-    content: `
-      SATISFACTION GUARANTEE:
-      • We stand behind the quality of all our services
-      • If unsatisfied, notify us within 48 hours of service
-      • We will make corrections at no additional cost
-      • One correction period included per service
-
-      CORRECTION TERMS:
-      • Corrections must be requested within 48 hours
-      • Original service date required for correction booking
-      • Corrections scheduled within 2 weeks of original service
-      • Multiple corrections may incur additional fees
-
-      WHAT'S COVERED:
-      ✓ Color correction (within 2 shades)
-      ✓ Extension adjustments
-      ✓ Lash/brow corrections
-      ✓ Styling adjustments
-      ✓ Length/style modifications
-
-      WHAT'S NOT COVERED:
-      ✗ Client-requested changes beyond original agreement
-      ✗ Damage from improper aftercare
-      ✗ Damage from external factors
-      ✗ Changes of mind regarding style
-      ✗ Services exceeding original scope
-
-      GUARANTEE LIMITATIONS:
-      • Guarantee void if aftercare instructions not followed
-      • Damage from product misuse not covered
-      • Extensions damaged by heat/chemicals not covered
-      • Color changes due to external factors not covered
-    `,
-  },
-  {
-    id: 8,
-    title: 'Refund Policy',
-    content: `
-      REFUND ELIGIBILITY:
-      • Refunds available for legitimate service failures only
-      • Must request refund within 48 hours of service
-      • Refund requires written documentation of issue
-      • Service guarantee must be invoked first (correction attempt)
-
-      REFUND PROCESSING:
-      • Refunds processed within 5-7 business days
-      • Original payment method will be credited
-      • Partial refunds may apply for partial service completion
-      • Refund amount = service cost only (travel fees not refunded)
-
-      NON-REFUNDABLE ITEMS:
-      ✗ Deposits (can be transferred)
-      ✗ Travel fees
-      ✗ Consultation fees
-      ✗ Supplies/products sold separately
-      ✗ Services requested and completed
-
-      REFUND EXCEPTIONS:
-      • Medical emergencies may warrant full refund
-      • Facility hazards may warrant full refund
-      • Stylist illness after 24 hours notice - full refund
-      • Service cancellation by salon - full refund
-
-      DISPUTE RESOLUTION:
-      • Disputes will be resolved within 14 days
-      • Documentation required for all disputes
-      • Decision is final pending review
-      • Mediation available for unresolved disputes
+      • Patch tests are required for certain treatments (lashes, brows, microblading).
+      • These must be completed at least 24–48 hours prior to your appointment.
+      • By booking, you confirm you have disclosed all allergies and medical conditions.
+      • I am not liable for reactions if a patch test is declined.
     `,
   },
 ]

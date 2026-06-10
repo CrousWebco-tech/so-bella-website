@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { FaTiktok, FaFacebook, FaInstagram } from 'react-icons/fa'
 import { useSiteContent, useWhatsAppUrl } from './SiteContentProvider'
+import SoBellaLogo from './SoBellaLogo'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -26,13 +27,9 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             className="space-y-4"
           >
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-luxury rounded-full flex items-center justify-center">
-                <span className="text-beauty-black font-serif text-lg font-bold">S</span>
-              </div>
-              <h3 className="font-serif text-xl font-bold">So Bella</h3>
+            <div className="flex md:block justify-center md:justify-start">
+              <SoBellaLogo size="md" variant="dark" />
             </div>
-            <p className="text-gold text-sm">Luxury Hair & Beauty Experience</p>
             <p className="text-beauty-white/60 text-sm leading-relaxed">
               Professional beauty services delivering luxury, elegance, and exceptional results.
             </p>
@@ -139,8 +136,9 @@ export default function Footer() {
             <p className="text-beauty-white/60 text-sm">
               © {currentYear} So Bella Hair & Beauty Lounge. All rights reserved.
             </p>
-            <p className="text-beauty-white/60 text-sm">
-              Designed with ✨ for luxury beauty experiences
+            <p className="text-beauty-white/50 text-sm">
+              Website by{' '}
+              <span className="text-gold/90 font-semibold tracking-wide">Crous WebCo</span>
             </p>
           </div>
         </div>

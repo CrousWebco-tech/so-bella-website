@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '../../lib/supabase'
 import { isAdminEmail } from '../../lib/admin'
+import SoBellaLogo from '../components/SoBellaLogo'
 
 export default function AdminLogin() {
   const [email, setEmail] = useState('')
@@ -67,8 +68,8 @@ export default function AdminLogin() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blush via-cream to-beauty-white px-4">
       <div className="bg-beauty-white rounded-3xl shadow-luxury-lg p-8 md:p-10 w-full max-w-md border border-gold/10">
         <div className="text-center mb-8">
-          <div className="w-14 h-14 mx-auto mb-4 bg-gradient-luxury rounded-full flex items-center justify-center shadow-luxury">
-            <span className="font-serif text-2xl font-bold text-beauty-black">S</span>
+          <div className="mb-5 flex justify-center">
+            <SoBellaLogo size="md" />
           </div>
           <h1 className="font-serif text-2xl font-bold text-beauty-black">Admin Sign In</h1>
           <p className="text-beauty-black/60 text-sm mt-2">

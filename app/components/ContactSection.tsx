@@ -70,7 +70,7 @@ export default function ContactSection() {
     {
       icon: Clock,
       label: 'Hours',
-      value: 'Tue - Sun: 10AM - 8PM',
+      value: 'Tue – Sat: 8am – 10:30pm',
       href: '#',
     },
   ]
@@ -154,25 +154,22 @@ export default function ContactSection() {
               })}
             </div>
 
-            {/* Google Maps Placeholder */}
+            {/* Location map */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
               viewport={{ once: true }}
-              className="w-full h-80 bg-gradient-luxury rounded-lg shadow-luxury overflow-hidden relative group"
+              className="w-full h-80 rounded-2xl shadow-luxury overflow-hidden relative border border-gold/15"
             >
-              <div className="absolute inset-0 flex items-center justify-center bg-gradient-luxury">
-                <div className="text-center space-y-2">
-                  <MapPin className="w-12 h-12 text-beauty-black/40 mx-auto" />
-                  <p className="text-beauty-black/60 font-semibold">
-                    Google Maps Embedded Here
-                  </p>
-                  <p className="text-sm text-beauty-black/40">
-                    Add your location
-                  </p>
-                </div>
-              </div>
+              <iframe
+                title={`Map of ${SITE_CONFIG.address}`}
+                src={`https://www.google.com/maps?q=${encodeURIComponent(SITE_CONFIG.address || 'Warrington, UK')}&output=embed`}
+                className="w-full h-full"
+                style={{ border: 0, filter: 'saturate(0.85) contrast(1.02)' }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </motion.div>
           </motion.div>
 
@@ -249,7 +246,7 @@ export default function ContactSection() {
                     value={formData.phone}
                     onChange={handleChange}
                     className="w-full px-4 py-3 bg-blush/10 border border-gold/20 rounded-lg focus:outline-none focus:border-gold transition-colors"
-                    placeholder="(555) 123-4567"
+                    placeholder="07XXX XXXXXX"
                   />
                 </div>
 

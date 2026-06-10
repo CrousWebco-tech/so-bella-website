@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { HERO_CONTENT } from '../../lib/constants'
 import { useWhatsAppUrl } from './SiteContentProvider'
 
 export default function AboutSection() {
@@ -27,19 +28,16 @@ export default function AboutSection() {
             viewport={{ once: true }}
             className="relative"
           >
-            {/* Owner portrait — elegant framed panel (holds her photo when added) */}
-            <div className="relative rounded-2xl overflow-hidden shadow-luxury-lg h-96 md:h-[30rem] bg-gradient-to-br from-nude-dark/30 via-blush/20 to-cream flex items-center justify-center group">
-              <div className="absolute -top-12 -left-12 w-56 h-56 rounded-full border border-gold/15" />
-              <div className="absolute -bottom-16 -right-10 w-64 h-64 rounded-full border border-gold/10" />
-              <div className="relative text-center px-8">
-                <div className="mx-auto mb-5 w-20 h-20 rounded-full bg-beauty-white/80 border border-gold/30 flex items-center justify-center shadow-luxury">
-                  <span className="font-serif text-3xl font-bold text-gold">SB</span>
-                </div>
-                <p className="font-serif italic text-2xl text-beauty-black">So Bella</p>
-                <div className="mx-auto my-3 h-px w-16 bg-gradient-to-r from-transparent via-gold to-transparent" />
-                <p className="uppercase tracking-[0.25em] text-xs text-beauty-black/50">Your solo stylist</p>
+            {/* Owner portrait — her photo with an elegant gold frame */}
+            <div
+              className="relative rounded-2xl overflow-hidden shadow-luxury-lg h-96 md:h-[30rem] bg-gradient-to-br from-nude-dark/30 via-blush/20 to-cream bg-cover bg-center bg-no-repeat group"
+              style={{ backgroundImage: `url(${HERO_CONTENT.ownerImageSrc})` }}
+            >
+              <div className="absolute inset-4 border border-gold/30 rounded-xl group-hover:border-gold/50 transition-luxury pointer-events-none" />
+              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-beauty-black/55 via-beauty-black/15 to-transparent p-5">
+                <p className="font-script text-3xl leading-none" style={{ color: '#f6d7e4' }}>So Bella</p>
+                <p className="uppercase tracking-[0.25em] text-[0.6rem] text-beauty-white/85 mt-1">Your solo stylist · Warrington</p>
               </div>
-              <div className="absolute inset-4 border border-gold/25 rounded-xl group-hover:border-gold/50 transition-luxury" />
             </div>
 
             {/* Decorative accent */}

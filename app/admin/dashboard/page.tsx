@@ -6,6 +6,7 @@ import { SITE_CONFIG, HERO_CONTENT, SOCIAL_LINKS, GALLERY_SETTINGS } from '../..
 import { supabase } from '../../../lib/supabase'
 import { isAdminEmail } from '../../../lib/admin'
 import { getSiteContent, upsertSiteContent, SiteContent } from '../../../lib/siteContent'
+import SoBellaLogo from '../../components/SoBellaLogo'
 
 export default function AdminDashboard() {
   const router = useRouter()
@@ -170,11 +171,15 @@ export default function AdminDashboard() {
   return (
     <div className="min-h-screen bg-beauty-white">
       {/* Header */}
-      <div className="bg-gradient-luxury border-b border-gold/20 px-6 py-4 flex justify-between items-center">
-        <h1 className="font-serif text-2xl font-bold text-beauty-black">Admin Dashboard</h1>
+      <div className="bg-gradient-to-r from-blush via-cream to-blush border-b border-gold/20 px-4 sm:px-6 py-4 flex justify-between items-center">
+        <div className="flex items-center gap-3">
+          <SoBellaLogo size="sm" showTagline={false} />
+          <span className="hidden sm:inline text-beauty-black/30">|</span>
+          <span className="hidden sm:inline font-serif text-lg text-beauty-black/70">Dashboard</span>
+        </div>
         <button
           onClick={handleLogout}
-          className="px-4 py-2 text-sm font-semibold text-beauty-black border border-gold/20 rounded-lg hover:bg-blush/20 transition-all"
+          className="px-4 py-2 text-sm font-semibold text-beauty-black bg-beauty-white/70 border border-gold/30 rounded-full hover:bg-beauty-white transition-all"
         >
           Logout
         </button>
