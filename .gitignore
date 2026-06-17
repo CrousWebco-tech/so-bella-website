@@ -42,3 +42,6 @@ Thumbs.db
 
 # Crous WebCo private business kit — never push to a client repo
 CrousWebCo-Business/
+
+# build artifact
+tsconfig.tsbuildinfo
