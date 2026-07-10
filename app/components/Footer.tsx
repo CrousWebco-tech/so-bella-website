@@ -17,7 +17,7 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="bg-beauty-black text-beauty-white">
+    <footer className="bg-charcoal text-beauty-white">
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
@@ -42,7 +42,7 @@ export default function Footer() {
             transition={{ delay: 0.1 }}
             className="space-y-4"
           >
-            <h4 className="font-semibold text-lg">Quick Links</h4>
+            <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-rose-light">Quick Links</h4>
             <ul className="space-y-2">
               {[
                 { label: 'Home', href: '#home' },
@@ -53,7 +53,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-beauty-white/70 hover:text-gold transition-luxury text-sm"
+                    className="text-beauty-white/70 hover:text-rose transition-luxury text-sm"
                   >
                     {link.label}
                   </a>
@@ -69,7 +69,7 @@ export default function Footer() {
             transition={{ delay: 0.2 }}
             className="space-y-4"
           >
-            <h4 className="font-semibold text-lg">Information</h4>
+            <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-rose-light">Information</h4>
             <ul className="space-y-2">
               {[
                 { label: 'About Us', href: '#about' },
@@ -80,7 +80,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-beauty-white/70 hover:text-gold transition-luxury text-sm"
+                    className="text-beauty-white/70 hover:text-rose transition-luxury text-sm"
                   >
                     {link.label}
                   </a>
@@ -96,7 +96,7 @@ export default function Footer() {
             transition={{ delay: 0.3 }}
             className="space-y-4"
           >
-            <h4 className="font-semibold text-lg">Follow Us</h4>
+            <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-rose-light">Follow Us</h4>
             <div className="flex space-x-4">
               {socialLinks.map((social) => {
                 const Icon = social.icon
@@ -108,7 +108,7 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.2, color: '#d4af7a' }}
                     whileTap={{ scale: 0.9 }}
-                    className="text-beauty-white/70 hover:text-gold transition-luxury text-xl"
+                    className="text-beauty-white/70 hover:text-rose transition-luxury text-xl"
                     title={social.name}
                   >
                     <Icon />
@@ -120,9 +120,7 @@ export default function Footer() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="block text-center w-full mt-4 px-4 py-2 bg-gradient-luxury text-beauty-black font-semibold rounded-full shadow-luxury hover:shadow-luxury-lg transition-luxury text-sm"
+              className="inline-flex items-center justify-center gap-2 w-full mt-5 px-4 py-2.5 bg-rose text-charcoal font-semibold rounded-full text-xs uppercase tracking-[0.14em] hover:bg-rose-light transition-luxury"
             >
               Book Appointment
             </motion.a>
@@ -130,7 +128,7 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-gold/20 pt-8">
+        <div className="border-t border-white/10 pt-8">
           {/* Footer Bottom */}
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-beauty-white/60 text-sm">
@@ -138,7 +136,7 @@ export default function Footer() {
             </p>
             <p className="text-beauty-white/50 text-sm">
               Website by{' '}
-              <span className="text-gold/90 font-semibold tracking-wide">Crous WebCo</span>
+              <span className="text-rose-light font-semibold tracking-wide">Crous WebCo</span>
             </p>
           </div>
         </div>

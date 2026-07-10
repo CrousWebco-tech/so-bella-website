@@ -85,19 +85,6 @@ const servicesData = [
       'Bridal packages',
     ],
   },
-  {
-    id: 7,
-    title: 'Mobile Appointments',
-    description: 'I come to you across Warrington and nearby — the same luxury treatment, in the comfort of your own home.',
-    icon: '🚗',
-    details: [
-      'In-home service across Warrington & nearby',
-      'Full mobile salon brought to you',
-      'The same luxury as the salon',
-      'Flexible scheduling around your day',
-      'Small travel fee based on your area',
-    ],
-  },
 ]
 
 export default function ServicesSection() {
@@ -145,11 +132,9 @@ export default function ServicesSection() {
           viewport={{ once: true }}
           className="text-center mb-16 space-y-4"
         >
-          <span className="inline-block px-4 py-2 bg-blush/40 rounded-full text-sm font-semibold text-beauty-black">
-            What I Offer
-          </span>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-beauty-black">
-            Beauty, tailored to you
+          <span className="section-label">What I Offer</span>
+          <h2 className="display-serif text-4xl md:text-5xl lg:text-6xl">
+            Beauty, <span className="accent-italic">tailored to you</span>
           </h2>
           <p className="text-lg text-beauty-black/60 max-w-2xl mx-auto">
             Hair and beauty services crafted one-on-one, so every appointment feels personal — and you leave feeling your most radiant.
@@ -175,9 +160,9 @@ export default function ServicesSection() {
                 )
               }
             >
-              <div className="relative h-full bg-beauty-white rounded-xl overflow-hidden shadow-luxury hover:shadow-luxury-lg transition-luxury border border-gold/10 hover:border-gold/40 hover:scale-105">
+              <div className="relative h-full bg-white rounded-2xl overflow-hidden card-editorial hover:-translate-y-1 transition-luxury">
                 {/* Gradient accent top */}
-                <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-gold/0 via-gold to-gold/0" />
+                <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-rose/0 via-rose to-rose/0" />
 
                 {/* Content */}
                 <div className="p-6 space-y-4 h-full flex flex-col">
@@ -185,7 +170,7 @@ export default function ServicesSection() {
                   <div className="text-4xl">{service.icon}</div>
 
                   {/* Title */}
-                  <h3 className="font-semibold text-lg text-beauty-black group-hover:text-gold transition-luxury">
+                  <h3 className="font-serif text-xl text-beauty-black group-hover:text-rose transition-luxury">
                     {service.title}
                   </h3>
 
@@ -201,7 +186,7 @@ export default function ServicesSection() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="block text-center w-full px-4 py-2 bg-gradient-luxury text-beauty-black font-semibold text-sm rounded-full hover:shadow-luxury transition-luxury"
+                      className="block text-center w-full px-4 py-2.5 bg-charcoal text-beauty-white font-semibold text-xs uppercase tracking-[0.14em] rounded-full hover:bg-rose hover:text-charcoal transition-luxury"
                     >
                       Book Now
                     </a>
@@ -266,9 +251,7 @@ export default function ServicesSection() {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-block px-8 py-3 border-2 border-gold text-gold font-semibold rounded-full hover:bg-gold hover:text-beauty-black transition-luxury"
+            className="btn-outline"
           >
             Get in Touch
           </motion.a>

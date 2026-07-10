@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import { X } from 'lucide-react'
+import { X, ArrowRight } from 'lucide-react'
 import { getGalleryImages } from '../../lib/supabase'
 import { GALLERY_SETTINGS } from '../../lib/constants'
 import { useWhatsAppUrl } from './SiteContentProvider'
@@ -83,11 +83,9 @@ export default function GallerySection() {
           viewport={{ once: true }}
           className="text-center mb-12 space-y-4"
         >
-          <span className="inline-block px-4 py-2 bg-blush/40 rounded-full text-sm font-semibold text-beauty-black">
-            Our Work
-          </span>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-beauty-black">
-            Gallery of Beauty
+          <span className="section-label">Our Work</span>
+          <h2 className="display-serif text-4xl md:text-5xl lg:text-6xl">
+            Gallery of <span className="accent-italic">Beauty</span>
           </h2>
           <p className="text-lg text-beauty-black/60 max-w-2xl mx-auto">
             Explore our latest transformations and feel inspired.
@@ -107,10 +105,10 @@ export default function GallerySection() {
               onClick={() => setSelectedCategory(category)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`px-6 py-2 rounded-full font-semibold transition-luxury ${
+              className={`px-6 py-2 rounded-full text-xs font-semibold uppercase tracking-[0.12em] transition-luxury ${
                 selectedCategory === category
-                  ? 'bg-gradient-luxury text-beauty-black shadow-luxury'
-                  : 'bg-beauty-white text-beauty-black border border-gold/20 hover:border-gold/40'
+                  ? 'bg-charcoal text-beauty-white'
+                  : 'bg-white text-beauty-black/70 border border-rose/20 hover:border-rose hover:text-rose'
               }`}
             >
               {category}
@@ -138,10 +136,14 @@ export default function GallerySection() {
               className="break-inside-avoid mb-6 cursor-pointer group"
               onClick={() => setSelectedImage(image.id)}
             >
-              <div
-                className="relative overflow-hidden rounded-xl shadow-luxury hover:shadow-luxury-lg transition-luxury h-64 md:h-72 bg-cover bg-center"
-                style={{ backgroundImage: `url(${image.src})` }}
-              >
+              <div className="relative overflow-hidden rounded-xl shadow-luxury hover:shadow-luxury-lg transition-luxury h-64 md:h-72">
+                {/* On-brand placeholder — shows through until the real photo is added */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blush via-nude to-gold/40" />
+                {/* Photo layer (covers the placeholder once the file exists) */}
+                <div
+                  className="absolute inset-0 bg-cover bg-center"
+                  style={{ backgroundImage: `url(${image.src})` }}
+                />
                 <div className="absolute inset-0 bg-beauty-black/25" />
                 <div className="absolute top-3 left-3 px-3 py-1 bg-beauty-white/90 backdrop-blur rounded-full text-xs font-semibold text-beauty-black z-20">
                   {image.category}
@@ -211,11 +213,10 @@ export default function GallerySection() {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-block px-8 py-3 bg-gradient-luxury text-beauty-black font-semibold rounded-full shadow-luxury hover:shadow-luxury-lg transition-luxury"
+            className="btn-dark"
           >
             Book Your Look
+            <ArrowRight className="w-4 h-4" />
           </motion.a>
         </motion.div>
       </div>

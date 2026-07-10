@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { ArrowRight } from 'lucide-react'
 import { HERO_CONTENT } from '../../lib/constants'
 import { useWhatsAppUrl } from './SiteContentProvider'
 
@@ -33,7 +34,7 @@ export default function AboutSection() {
               className="relative rounded-2xl overflow-hidden shadow-luxury-lg h-96 md:h-[30rem] bg-gradient-to-br from-nude-dark/30 via-blush/20 to-cream bg-cover bg-center bg-no-repeat group"
               style={{ backgroundImage: `url(${HERO_CONTENT.ownerImageSrc})` }}
             >
-              <div className="absolute inset-4 border border-gold/30 rounded-xl group-hover:border-gold/50 transition-luxury pointer-events-none" />
+              <div className="absolute inset-4 border border-white/40 rounded-xl group-hover:border-rose/60 transition-luxury pointer-events-none" />
               <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-beauty-black/55 via-beauty-black/15 to-transparent p-5">
                 <p className="font-script text-3xl leading-none" style={{ color: '#f6d7e4' }}>So Bella</p>
                 <p className="uppercase tracking-[0.25em] text-[0.6rem] text-beauty-white/85 mt-1">Your solo stylist · Warrington</p>
@@ -61,11 +62,8 @@ export default function AboutSection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="inline-block"
             >
-              <span className="px-4 py-2 bg-blush/40 rounded-full text-sm font-semibold text-beauty-black">
-                A Personal Touch
-              </span>
+              <span className="section-label section-label--start">A Personal Touch</span>
             </motion.div>
 
             {/* Heading */}
@@ -76,10 +74,10 @@ export default function AboutSection() {
               viewport={{ once: true }}
               className="space-y-4"
             >
-              <h2 className="font-serif text-4xl md:text-5xl font-bold text-beauty-black leading-tight">
-                A solo stylist with a warm, professional touch
+              <h2 className="display-serif text-4xl md:text-5xl lg:text-6xl">
+                A solo stylist with a <span className="accent-italic">warm, professional</span> touch
               </h2>
-              <p className="text-lg text-gold font-semibold">
+              <p className="text-lg text-rose font-medium">
                 Every client receives my full attention from consultation to finish.
               </p>
             </motion.div>
@@ -99,9 +97,6 @@ export default function AboutSection() {
                 As a solo stylist, I bring warmth, precision, and true personalization to each appointment. Your experience is calm, inviting, and crafted just for you.
               </p>
               <p className="text-lg leading-relaxed">
-                Based in Warrington, I also offer mobile appointments across surrounding areas, bringing luxury beauty directly to your home.
-              </p>
-              <p className="text-lg leading-relaxed">
                 From hair extensions and lashes to brows and beauty treatments, I help you walk out feeling radiant and ready for any occasion.
               </p>
             </motion.div>
@@ -119,8 +114,8 @@ export default function AboutSection() {
                 { label: 'Luxury Service', value: 'Elevated beauty with soft, warm finishes.' },
                 { label: 'Relaxed Experience', value: 'A calm appointment that feels like self-care.' },
               ].map((item) => (
-                <div key={item.label} className="rounded-3xl bg-beauty-white/90 border border-gold/10 p-5 shadow-sm">
-                  <p className="text-sm text-gold font-semibold mb-2">{item.label}</p>
+                <div key={item.label} className="card-editorial p-5">
+                  <p className="text-xs uppercase tracking-[0.16em] text-rose font-semibold mb-2">{item.label}</p>
                   <p className="text-sm text-beauty-black/70">{item.value}</p>
                 </div>
               ))}
@@ -135,11 +130,10 @@ export default function AboutSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
               viewport={{ once: true }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-block px-8 py-3 bg-gradient-luxury text-beauty-black font-semibold rounded-full shadow-luxury hover:shadow-luxury-lg transition-luxury"
+              className="btn-dark"
             >
               Book Your Appointment
+              <ArrowRight className="w-4 h-4" />
             </motion.a>
           </motion.div>
         </div>

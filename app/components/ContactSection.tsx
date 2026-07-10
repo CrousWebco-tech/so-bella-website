@@ -82,7 +82,6 @@ export default function ContactSection() {
     'Brows',
     'Microblading',
     'Styling',
-    'Mobile Appointments',
   ]
 
   return (
@@ -106,11 +105,9 @@ export default function ContactSection() {
           viewport={{ once: true }}
           className="text-center mb-16 space-y-4"
         >
-          <span className="inline-block px-4 py-2 bg-blush/40 rounded-full text-sm font-semibold text-beauty-black">
-            Reach Out Directly
-          </span>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-beauty-black">
-            Send a personal note to the stylist
+          <span className="section-label">Reach Out Directly</span>
+          <h2 className="display-serif text-4xl md:text-5xl lg:text-6xl">
+            Send a <span className="accent-italic">personal note</span> to the stylist
           </h2>
           <p className="text-lg text-beauty-black/60 max-w-2xl mx-auto">
             Share your vision, ask questions, or request the perfect appointment.
@@ -138,14 +135,14 @@ export default function ContactSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="flex items-start space-x-4 p-4 bg-beauty-white rounded-lg border border-gold/10 hover:border-gold/40 hover:shadow-luxury transition-luxury group"
+                    className="flex items-start space-x-4 p-4 bg-white rounded-2xl border border-rose/12 hover:border-rose/40 hover:shadow-luxury transition-luxury group"
                   >
-                    <div className="p-3 bg-gradient-luxury rounded-lg group-hover:scale-110 transition-transform">
-                      <Icon className="w-6 h-6 text-beauty-black" />
+                    <div className="p-3 bg-rose-soft rounded-xl group-hover:bg-rose transition-colors">
+                      <Icon className="w-6 h-6 text-rose group-hover:text-charcoal transition-colors" />
                     </div>
                     <div>
-                      <p className="text-sm text-beauty-black/60">{info.label}</p>
-                      <p className="font-semibold text-beauty-black group-hover:text-gold transition-colors">
+                      <p className="text-xs uppercase tracking-[0.14em] text-beauty-black/50">{info.label}</p>
+                      <p className="font-semibold text-beauty-black group-hover:text-rose transition-colors">
                         {info.value}
                       </p>
                     </div>
@@ -292,7 +289,7 @@ export default function ContactSection() {
                   disabled={isLoading}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-full px-6 py-3 bg-gradient-luxury text-beauty-black font-semibold rounded-full shadow-luxury hover:shadow-luxury-lg transition-luxury disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="btn-dark w-full disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isLoading ? 'Sending...' : 'Send Message'}
                 </motion.button>

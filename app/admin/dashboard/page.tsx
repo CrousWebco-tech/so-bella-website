@@ -352,10 +352,12 @@ export default function AdminDashboard() {
         {activeTab === 'services' && (
           <div className="space-y-6">
             <h2 className="font-serif text-2xl font-bold text-beauty-black">Services & Pricing</h2>
-            <p className="text-beauty-black/60 text-sm">Services are managed in Square Catalog. Connect Square to enable full service editing from the dashboard.</p>
+            <p className="text-beauty-black/60 text-sm">Your services and prices appear in the Services section of your website.</p>
             <div className="bg-blush/20 p-4 rounded-lg border border-gold/10">
               <p className="text-sm text-beauty-black/70">
-                For now, services are stored in `lib/constants.ts`. We&apos;ll add Square integration for full CMS functionality.
+                To add, remove, or change the price of a service, just message your developer and
+                it&apos;ll be updated for you. Self-service editing for this section is planned for a
+                future update.
               </p>
             </div>
           </div>

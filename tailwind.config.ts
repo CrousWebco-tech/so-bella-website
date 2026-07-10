@@ -18,6 +18,13 @@ const config: Config = {
         'gold-light': '#e7c79b',
         'beauty-black': '#2a221e',
         'beauty-white': '#fbf6f1',
+        // Editorial accents (Elegance direction)
+        'rose': '#cf8a98',
+        'rose-light': '#e8b9c1',
+        'rose-soft': '#f4dde1',
+        'charcoal': '#1c1714',
+        'charcoal-light': '#2e2823',
+        'petal': '#fdf1ef',
       },
       fontFamily: {
         // Luxury typography
@@ -28,6 +35,8 @@ const config: Config = {
         'gradient-luxury': 'linear-gradient(135deg, #f7e6dd 0%, #ecdbca 55%, #e7c79b 100%)',
         'gradient-warm': 'linear-gradient(135deg, #fbf3ec 0%, #f7e6dd 100%)',
         'gradient-dark': 'linear-gradient(135deg, #2a221e 0%, #3a322c 100%)',
+        // Editorial soft-pink hero wash
+        'gradient-petal': 'linear-gradient(160deg, #fdf1ef 0%, #fbf6f1 45%, #f7e6dd 100%)',
       },
       backdropBlur: {
         xs: '2px',

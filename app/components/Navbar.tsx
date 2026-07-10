@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useWhatsAppUrl } from './SiteContentProvider'
 import SoBellaLogo from './SoBellaLogo'
@@ -37,7 +37,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="sticky top-0 z-50 glass bg-beauty-white/90 backdrop-blur-lg border-b border-gold/10">
+    <nav className="sticky top-0 z-50 bg-beauty-white/85 backdrop-blur-lg border-b border-rose/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 md:h-20">
           {/* Logo */}
@@ -46,12 +46,12 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-1">
+          <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="px-3 py-2 text-sm font-medium text-beauty-black hover:text-gold transition-luxury rounded-md"
+                className="px-3 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-beauty-black/80 hover:text-rose transition-luxury"
               >
                 {link.label}
               </a>
@@ -61,16 +61,15 @@ export default function Navbar() {
           {/* CTA Button & Menu Toggle */}
           <div className="flex items-center space-x-4">
             {/* Book Now Button - Desktop */}
-            <motion.a
+            <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="hidden md:inline-block px-6 py-2 bg-gradient-luxury text-beauty-black font-semibold rounded-full shadow-luxury hover:shadow-luxury-lg transition-luxury"
+              className="hidden md:inline-flex btn-dark !px-6 !py-2.5"
             >
-              Book Now
-            </motion.a>
+              Book on WhatsApp
+              <ArrowRight className="w-4 h-4" />
+            </a>
 
             {/* Mobile Menu Toggle */}
             <button
@@ -104,12 +103,12 @@ export default function Navbar() {
                 animate="open"
                 transition={{ delay: index * 0.05 }}
                 onClick={() => setIsOpen(false)}
-                className="block px-3 py-2 text-sm font-medium text-beauty-black hover:text-gold hover:bg-blush/30 transition-luxury rounded-md"
+                className="block px-3 py-2.5 text-xs font-semibold uppercase tracking-[0.14em] text-beauty-black/80 hover:text-rose hover:bg-rose-soft/40 transition-luxury rounded-md"
               >
                 {link.label}
               </motion.a>
             ))}
-            
+
             {/* Mobile CTA */}
             <motion.a
               href={whatsappUrl}
@@ -120,9 +119,10 @@ export default function Navbar() {
               animate="open"
               transition={{ delay: navLinks.length * 0.05 }}
               onClick={() => setIsOpen(false)}
-              className="block text-center w-full mt-4 px-6 py-3 bg-gradient-luxury text-beauty-black font-semibold rounded-full shadow-luxury"
+              className="btn-dark w-full mt-4"
             >
-              Book Now
+              Book on WhatsApp
+              <ArrowRight className="w-4 h-4" />
             </motion.a>
           </motion.div>
         )}

@@ -37,15 +37,6 @@ const termsItems = [
   },
   {
     id: 4,
-    title: 'Mobile Appointments',
-    content: `
-      • Mobile services are available within 5 miles of WA2 free of charge.
-      • A £10 travel fee applies outside this area.
-      • A suitable workspace must be provided by the client.
-    `,
-  },
-  {
-    id: 5,
     title: 'Hair Extensions Policy',
     content: `
       • A consultation is required before booking any hair extension service.
@@ -57,13 +48,49 @@ const termsItems = [
     `,
   },
   {
-    id: 6,
+    id: 5,
     title: 'Patch Testing & Allergies',
     content: `
       • Patch tests are required for certain treatments (lashes, brows, microblading).
       • These must be completed at least 24–48 hours prior to your appointment.
       • By booking, you confirm you have disclosed all allergies and medical conditions.
       • I am not liable for reactions if a patch test is declined.
+    `,
+  },
+  {
+    id: 6,
+    title: 'Service Guarantee',
+    content: `
+      • Your satisfaction is important to me.
+      • If you experience any issues, please contact me within 48 hours.
+      • Fixes will be offered where appropriate.
+      • No refunds are given on completed services.
+    `,
+  },
+  {
+    id: 7,
+    title: 'Late Arrivals',
+    content: `
+      • Please arrive on time to your appointment.
+      • Late arrivals may result in reduced treatment time or cancellation.
+      • The full treatment cost may still be charged.
+    `,
+  },
+  {
+    id: 8,
+    title: 'Media & Marketing',
+    content: `
+      • Photos/videos may be taken for marketing purposes.
+      • Please let me know if you do not wish to be featured.
+    `,
+  },
+  {
+    id: 9,
+    title: 'Refund Policy',
+    content: `
+      • No refunds on any services.
+      • No refunds on hair extensions once purchased.
+      • Deposits are non-refundable.
     `,
   },
 ]

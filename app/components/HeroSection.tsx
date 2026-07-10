@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { ArrowRight } from 'lucide-react'
 import { HERO_CONTENT } from '../../lib/constants'
 import { useSiteContent, useWhatsAppUrl } from './SiteContentProvider'
 
@@ -13,7 +14,7 @@ export default function HeroSection() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
     >
       {/* Background gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blush/40 via-beauty-white to-gold/10 -z-10" />
+      <div className="absolute inset-0 bg-gradient-petal -z-10" />
 
       {/* Decorative shapes */}
       <motion.div
@@ -36,16 +37,13 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="space-y-6 text-center lg:text-left"
           >
-            {/* Tagline */}
+            {/* Section label */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="inline-block"
             >
-              <span className="px-4 py-2 bg-blush/70 rounded-full text-sm font-semibold text-beauty-black">
-                {content.hero.tagline}
-              </span>
+              <span className="section-label">Warrington · Est. with love</span>
             </motion.div>
 
             {/* Main Headline */}
@@ -53,10 +51,10 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-beauty-black leading-tight"
+              className="display-serif text-5xl sm:text-6xl md:text-7xl lg:text-[5rem]"
             >
               {content.hero.headline}
-              <span className="gradient-text"> {HERO_CONTENT.headlineAccent}</span>
+              <span className="accent-italic"> {HERO_CONTENT.headlineAccent}</span>
             </motion.h1>
 
             {/* Subheadline */}
@@ -77,9 +75,9 @@ export default function HeroSection() {
               className="grid gap-3 sm:grid-cols-3 text-sm text-beauty-black/70 max-w-md mx-auto lg:mx-0"
             >
               {HERO_CONTENT.highlights.map((item) => (
-                <div key={item.title} className="rounded-3xl bg-beauty-white/80 border border-gold/10 px-4 py-3 shadow-sm">
-                  <p className="font-semibold text-beauty-black">{item.title}</p>
-                  <p>{item.description}</p>
+                <div key={item.title} className="rounded-2xl bg-white/70 border border-rose/15 px-4 py-3.5 backdrop-blur-sm">
+                  <p className="font-serif text-base text-beauty-black mb-0.5">{item.title}</p>
+                  <p className="text-beauty-black/60">{item.description}</p>
                 </div>
               ))}
             </motion.div>
@@ -91,26 +89,23 @@ export default function HeroSection() {
               transition={{ delay: 0.65 }}
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
-              <motion.a
+              <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 md:py-4 bg-gradient-luxury text-beauty-black font-semibold rounded-full shadow-luxury hover:shadow-luxury-lg transition-luxury text-lg text-center"
+                className="btn-dark"
               >
                 {content.hero.primaryCta}
-              </motion.a>
-              <motion.a
+                <ArrowRight className="w-4 h-4" />
+              </a>
+              <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 md:py-4 border-2 border-gold text-gold font-semibold rounded-full hover:bg-gold hover:text-beauty-black transition-luxury text-lg text-center"
+                className="btn-outline"
               >
                 {content.hero.secondaryCta}
-              </motion.a>
+              </a>
             </motion.div>
 
             {/* Trust badges */}
@@ -118,13 +113,13 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.75 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start text-sm text-beauty-black/60 pt-4"
+              className="flex flex-wrap gap-x-5 gap-y-2 justify-center lg:justify-start text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-beauty-black/45 pt-5"
             >
-              <span>⭐ 5-Star Luxury Care</span>
-              <span className="hidden sm:inline">•</span>
-              <span>🎯 Personalized appointments</span>
-              <span className="hidden sm:inline">•</span>
-              <span>💎 Warm, professional service</span>
+              <span>5-Star Luxury Care</span>
+              <span className="text-rose/60">·</span>
+              <span>Personalised Appointments</span>
+              <span className="text-rose/60">·</span>
+              <span>Warm, Professional Service</span>
             </motion.div>
           </motion.div>
 
@@ -133,8 +128,17 @@ export default function HeroSection() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative h-96 md:h-full lg:h-96 xl:h-screen lg:max-h-screen"
+            className="relative h-96 md:h-full lg:h-96 xl:h-[36rem] lg:max-h-screen lg:rotate-2"
           >
+            {/* Soft pink panel behind the photo */}
+            <div className="absolute -inset-3 rounded-[2rem] bg-rose-soft/60 -z-10 lg:-rotate-3" />
+
+            {/* Floating logo chip */}
+            <div className="absolute -top-5 -right-3 z-20 bg-beauty-white rounded-xl px-5 py-3 shadow-luxury -rotate-3 hidden sm:block">
+              <p className="font-script text-2xl text-rose leading-none">So Bella</p>
+              <p className="text-[0.55rem] uppercase tracking-[0.25em] text-beauty-black/50 text-center mt-1">Hair &amp; Beauty</p>
+            </div>
+
             {/* Hero Image Placeholder */}
             <div
             className="relative w-full h-full rounded-2xl overflow-hidden shadow-luxury-lg group"

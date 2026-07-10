@@ -197,19 +197,6 @@ export const SERVICES = [
       'Bridal packages',
     ],
   },
-  {
-    id: 7,
-    title: 'Mobile Appointments',
-    description: 'We come to you! Professional beauty services at your location in Warrington and surrounding areas.',
-    icon: '🚗',
-    details: [
-      'In-home service across Warrington and nearby towns',
-      'Full mobile salon equipment brought to you',
-      'Same luxury quality as the salon',
-      'Flexible scheduling for your busy day',
-      'Travel fee based on your area',
-    ],
-  },
 ]
 
 // Color Palette (matches Tailwind config)
@@ -260,11 +247,6 @@ export const PRICING = {
     min: 60,
     max: 200,
     description: 'Hair styling for all occasions',
-  },
-  mobileAppointment: {
-    fee: 25,
-    maxFee: 50,
-    description: 'Additional travel fee based on location',
   },
 }
 
@@ -326,21 +308,16 @@ export const FAQ_ITEMS = [
   },
   {
     id: 3,
-    question: 'Do you offer mobile appointments?',
-    answer: 'Yes, we offer mobile appointments with an additional travel fee. Mobile bookings require 72 hours advance notice.',
-  },
-  {
-    id: 4,
     question: 'What if I\'m allergic to products?',
     answer: 'We require a patch test 48 hours before service for all new clients. We can use hypoallergenic alternatives when needed.',
   },
   {
-    id: 5,
+    id: 4,
     question: 'Can I book same-day appointments?',
     answer: 'Same-day appointments are not available. We require 24-48 hours advance booking to ensure quality service.',
   },
   {
-    id: 6,
+    id: 5,
     question: 'What payment methods do you accept?',
     answer: 'We accept cash, credit/debit cards, bank transfers, and digital payment apps. A 50% deposit is required to confirm bookings.',
   },
@@ -349,7 +326,6 @@ export const FAQ_ITEMS = [
 // Booking Requirements
 export const BOOKING_REQUIREMENTS = {
   minimumAdvanceNotice: 24, // hours
-  mobileAdvanceNotice: 72, // hours
   depositPercentage: 50, // % of total
   cancellationNotice: 48, // hours
   depositValidity: 90, // days

@@ -46,6 +46,109 @@ body {
   @apply bg-gradient-to-r from-gold to-gold-light bg-clip-text text-transparent;
 }
 
+/* ---- Editorial design system (Elegance direction) ---- */
+
+/* Soft-pink italic accent for headline words */
+.accent-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: #cf8a98;
+  font-weight: 500;
+}
+
+/* Letter-spaced uppercase section label with flanking dashes */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #cf8a98;
+}
+.section-label::before,
+.section-label::after {
+  content: '';
+  width: 2.25rem;
+  height: 1px;
+  background: #d9a7af;
+  opacity: 0.8;
+}
+.section-label--start::before {
+  display: none;
+}
+
+/* Editorial display heading */
+.display-serif {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.04;
+  color: #211a16;
+}
+
+/* Solid charcoal pill button with arrow */
+.btn-dark {
+  @apply inline-flex items-center justify-center gap-2;
+  background: #1c1714;
+  color: #fbf6f1;
+  padding: 0.95rem 2rem;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+.btn-dark:hover {
+  background: #cf8a98;
+  color: #1c1714;
+  transform: translateY(-2px);
+}
+
+/* Outline pill button */
+.btn-outline {
+  @apply inline-flex items-center justify-center gap-2;
+  background: transparent;
+  color: #1c1714;
+  padding: 0.95rem 2rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(28, 23, 20, 0.35);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+.btn-outline:hover {
+  border-color: #cf8a98;
+  color: #cf8a98;
+}
+
+/* Big serif numeral for step/feature cards */
+.editorial-numeral {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 2.75rem;
+  line-height: 1;
+  color: #cf8a98;
+}
+
+/* Soft editorial card */
+.card-editorial {
+  background: #ffffff;
+  border: 1px solid rgba(207, 138, 152, 0.14);
+  border-radius: 1.25rem;
+  box-shadow: 0 18px 50px -28px rgba(120, 80, 60, 0.30);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.card-editorial:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 60px -28px rgba(120, 80, 60, 0.38);
+}
+
 /* Luxury shadows — soft and warm */
 .shadow-luxury {
   box-shadow: 0 10px 30px -12px rgba(120, 80, 50, 0.18);

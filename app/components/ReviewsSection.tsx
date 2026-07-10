@@ -21,7 +21,6 @@ const serviceOptions = [
   'Brows',
   'Microblading',
   'Styling',
-  'Mobile Appointments',
 ]
 
 export default function ReviewsSection() {
@@ -133,11 +132,9 @@ export default function ReviewsSection() {
           viewport={{ once: true }}
           className="text-center mb-16 space-y-4"
         >
-          <span className="inline-block px-4 py-2 bg-blush/40 rounded-full text-sm font-semibold text-beauty-black">
-            Real reviews from real clients
-          </span>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-beauty-black">
-            Client Love
+          <span className="section-label">Real reviews from real clients</span>
+          <h2 className="display-serif text-4xl md:text-5xl lg:text-6xl">
+            Client <span className="accent-italic">Love</span>
           </h2>
           <p className="text-lg text-beauty-black/60 max-w-2xl mx-auto">
             Only published feedback from actual clients after approval. No placeholders, no fake reviews.
@@ -165,11 +162,11 @@ export default function ReviewsSection() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    className="bg-beauty-white rounded-3xl p-8 shadow-luxury hover:shadow-luxury-lg transition-luxury border border-gold/10"
+                    className="card-editorial p-8"
                   >
-                    <div className="flex flex-wrap gap-2 mb-5">
+                    <div className="flex flex-wrap gap-1.5 mb-5">
                       {Array.from({ length: review.rating }).map((_, i) => (
-                        <Star key={i} className="w-5 h-5 fill-gold text-gold" />
+                        <Star key={i} className="w-5 h-5 fill-rose text-rose" />
                       ))}
                     </div>
                     <p className="text-beauty-black/80 leading-relaxed text-lg italic mb-8">
@@ -180,7 +177,7 @@ export default function ReviewsSection() {
                         <p className="font-semibold text-beauty-black">{review.client_name}</p>
                         <p className="text-sm text-beauty-black/60">{review.service_type || 'Client'}</p>
                       </div>
-                      <p className="text-sm text-gold font-semibold">Published review</p>
+                      <p className="text-xs uppercase tracking-[0.14em] text-rose font-semibold">Published review</p>
                     </div>
                   </motion.div>
                 ))}
@@ -193,24 +190,24 @@ export default function ReviewsSection() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={goToPrevious}
-                  className="p-3 bg-gradient-luxury rounded-full shadow-luxury hover:shadow-luxury-lg transition-luxury"
+                  className="p-3 bg-charcoal rounded-full hover:bg-rose transition-luxury"
                 >
-                  <ChevronLeft className="w-6 h-6 text-beauty-black" />
+                  <ChevronLeft className="w-6 h-6 text-beauty-white" />
                 </motion.button>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={goToNext}
-                  className="p-3 bg-gradient-luxury rounded-full shadow-luxury hover:shadow-luxury-lg transition-luxury"
+                  className="p-3 bg-charcoal rounded-full hover:bg-rose transition-luxury"
                 >
-                  <ChevronRight className="w-6 h-6 text-beauty-black" />
+                  <ChevronRight className="w-6 h-6 text-beauty-white" />
                 </motion.button>
               </div>
             )}
           </div>
 
-          <div className="rounded-3xl bg-beauty-white border border-gold/10 p-8 shadow-luxury">
-            <h3 className="font-serif text-2xl font-bold text-beauty-black mb-4">Share your experience</h3>
+          <div className="card-editorial p-8">
+            <h3 className="display-serif text-2xl md:text-3xl mb-4">Share your experience</h3>
             <p className="text-beauty-black/70 mb-6">
               Real reviews from real clients. Submit your review and it will be published after approval.
             </p>
@@ -295,7 +292,7 @@ export default function ReviewsSection() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full rounded-full bg-gradient-luxury px-6 py-3 text-beauty-black font-semibold shadow-luxury hover:shadow-luxury-lg transition-luxury"
+                  className="btn-dark w-full"
                 >
                   Submit Review
                 </button>
