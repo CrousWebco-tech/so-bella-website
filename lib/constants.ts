@@ -28,8 +28,8 @@ export const SITE_CONFIG = {
 
 export const HERO_CONTENT = {
   tagline: '✨ Luxury beauty by a solo stylist',
-  headline: 'Your most radiant self starts with',
-  headlineAccent: 'one expert touch',
+  headline: 'Where every detail feels',
+  headlineAccent: 'beautifully you.',
   subheadline:
     'Warm, professional beauty and hair services crafted by a dedicated solo stylist who gives every client undivided attention.',
   highlights: [
