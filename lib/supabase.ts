@@ -256,6 +256,71 @@ export async function addGalleryImage(data: {
 }
 
 /**
+ * Get ALL reviews (pending + approved) for the admin dashboard.
+ */
+export async function getAllReviews() {
+  try {
+    if (!supabase) throw new Error('Supabase not configured')
+
+    const { data, error } = await supabase
+      .from('reviews')
+      .select('*')
+      .order('created_at', { ascending: false })
+
+    if (error) throw error
+    return { success: true, data: data as Review[] }
+  } catch (err) {
+    console.error('getAllReviews error', err)
+    return { success: false, error: err, data: [] as Review[] }
+  }
+}
+
+/**
+ * Approve a review so it shows on the public site.
+ */
+export async function approveReview(id: string) {
+  try {
+    if (!supabase) throw new Error('Supabase not configured')
+    const { error } = await supabase.from('reviews').update({ verified: true }).eq('id', id)
+    if (error) throw error
+    return { success: true }
+  } catch (err) {
+    console.error('approveReview error', err)
+    return { success: false, error: err }
+  }
+}
+
+/**
+ * Delete a review by id.
+ */
+export async function deleteReview(id: string) {
+  try {
+    if (!supabase) throw new Error('Supabase not configured')
+    const { error } = await supabase.from('reviews').delete().eq('id', id)
+    if (error) throw error
+    return { success: true }
+  } catch (err) {
+    console.error('deleteReview error', err)
+    return { success: false, error: err }
+  }
+}
+
+/**
+ * Update a gallery image's position (display_order).
+ */
+export async function updateGalleryOrder(id: string, display_order: number) {
+  try {
+    if (!supabase) throw new Error('Supabase not configured')
+    const { error } = await supabase.from('gallery_images').update({ display_order }).eq('id', id)
+    if (error) throw error
+    return { success: true }
+  } catch (err) {
+    console.error('updateGalleryOrder error', err)
+    return { success: false, error: err }
+  }
+}
+
+/**
  * Delete a gallery image record by id.
  */
 export async function deleteGalleryImage(id: string) {

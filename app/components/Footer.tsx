@@ -106,7 +106,7 @@ export default function Footer() {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ scale: 1.2, color: '#d4af7a' }}
+                    whileHover={{ scale: 1.2, color: '#ee9ec2' }}
                     whileTap={{ scale: 0.9 }}
                     className="text-beauty-white/70 hover:text-rose transition-luxury text-xl"
                     title={social.name}

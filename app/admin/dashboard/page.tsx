@@ -6,23 +6,61 @@ import { SITE_CONFIG, HERO_CONTENT, SOCIAL_LINKS, GALLERY_SETTINGS } from '../..
 import { supabase } from '../../../lib/supabase'
 import { isAdminEmail } from '../../../lib/admin'
 import { getSiteContent, upsertSiteContent, SiteContent } from '../../../lib/siteContent'
+import type { Review } from '../../../lib/supabase'
 import SoBellaLogo from '../../components/SoBellaLogo'
+
+type GalleryItem = { id: string; title: string; category: string; image_url: string; display_order?: number }
 
 export default function AdminDashboard() {
   const router = useRouter()
   const [authorized, setAuthorized] = useState(false)
-  const [activeTab, setActiveTab] = useState<'business' | 'hero' | 'services' | 'social' | 'gallery'>('business')
+  const [activeTab, setActiveTab] = useState<'business' | 'hero' | 'services' | 'social' | 'gallery' | 'reviews'>('business')
   const [saved, setSaved] = useState(false)
+  const [saving, setSaving] = useState(false)
   const [loading, setLoading] = useState(true)
-  const [galleryImages, setGalleryImages] = useState<Array<{ id: string; title: string; category: string; image_url: string }>>([])
+  const [galleryImages, setGalleryImages] = useState<GalleryItem[]>([])
   const [galleryCategory, setGalleryCategory] = useState('Hair Extensions')
   const [galleryTitle, setGalleryTitle] = useState('')
   const [galleryUploading, setGalleryUploading] = useState(false)
+  const [reviews, setReviews] = useState<Review[]>([])
+  const [heroUploading, setHeroUploading] = useState(false)
+  const [portraitUploading, setPortraitUploading] = useState(false)
 
   const refreshGallery = async () => {
     const { getGalleryImages } = await import('../../../lib/supabase')
     const res = await getGalleryImages()
-    if (res.success && res.data) setGalleryImages(res.data as typeof galleryImages)
+    if (res.success && res.data) setGalleryImages(res.data as GalleryItem[])
+  }
+
+  const refreshReviews = async () => {
+    const { getAllReviews } = await import('../../../lib/supabase')
+    const res = await getAllReviews()
+    if (res.success && res.data) setReviews(res.data)
+  }
+
+  // Upload a photo and return its public URL (shared by hero/portrait pickers).
+  const uploadPhoto = async (file: File, folder: string) => {
+    const { uploadImage } = await import('../../../lib/supabase')
+    const up = await uploadImage(file, folder)
+    if (!up.success || !up.url) {
+      alert("The photo couldn't be uploaded. Please check your internet and try again.")
+      return null
+    }
+    return up.url
+  }
+
+  // Move a gallery photo one position left/right and persist the new order.
+  const moveGalleryImage = async (index: number, direction: -1 | 1) => {
+    const target = index + direction
+    if (target < 0 || target >= galleryImages.length) return
+    const { updateGalleryOrder } = await import('../../../lib/supabase')
+    const a = galleryImages[index]
+    const b = galleryImages[target]
+    await Promise.all([
+      updateGalleryOrder(a.id, target),
+      updateGalleryOrder(b.id, index),
+    ])
+    await refreshGallery()
   }
 
   useEffect(() => {
@@ -74,8 +112,15 @@ export default function AdminDashboard() {
           instagram: content.social?.instagram || prev.instagram,
           facebook: content.social?.facebook || prev.facebook,
           tiktok: content.social?.tiktok || prev.tiktok,
+          heroImageUrl: content.heroImageUrl || prev.heroImageUrl,
+          ownerImageUrl: content.ownerImageUrl || prev.ownerImageUrl,
         }))
       }
+
+      // Load reviews so the owner can approve or remove them.
+      const { getAllReviews } = await import('../../../lib/supabase')
+      const rres = await getAllReviews()
+      if (mounted && rres.success && rres.data) setReviews(rres.data)
 
       // Load existing gallery images so the owner can see/delete them.
       const { getGalleryImages } = await import('../../../lib/supabase')
@@ -117,6 +162,8 @@ export default function AdminDashboard() {
     instagram: SOCIAL_LINKS.instagram,
     facebook: SOCIAL_LINKS.facebook,
     tiktok: SOCIAL_LINKS.tiktok,
+    heroImageUrl: '',
+    ownerImageUrl: '',
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -153,14 +200,18 @@ export default function AdminDashboard() {
         facebook: formData.facebook,
         tiktok: formData.tiktok,
       },
+      heroImageUrl: formData.heroImageUrl,
+      ownerImageUrl: formData.ownerImageUrl,
     }
 
+    setSaving(true)
     const res = await upsertSiteContent(payload)
+    setSaving(false)
     if (res.success) {
       setSaved(true)
-      setTimeout(() => setSaved(false), 3000)
+      setTimeout(() => setSaved(false), 4000)
     } else {
-      alert('Error saving content; check console for details')
+      alert("Your changes couldn't be saved. Please check your internet and try again.")
     }
   }
 
@@ -177,23 +228,34 @@ export default function AdminDashboard() {
           <span className="hidden sm:inline text-beauty-black/30">|</span>
           <span className="hidden sm:inline font-serif text-lg text-beauty-black/70">Dashboard</span>
         </div>
-        <button
-          onClick={handleLogout}
-          className="px-4 py-2 text-sm font-semibold text-beauty-black bg-beauty-white/70 border border-gold/30 rounded-full hover:bg-beauty-white transition-all"
-        >
-          Logout
-        </button>
+        <div className="flex items-center gap-2">
+          <a
+            href="/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-2 text-sm font-semibold text-beauty-white bg-beauty-black rounded-full hover:opacity-85 transition-all"
+          >
+            👁 See my website
+          </a>
+          <button
+            onClick={handleLogout}
+            className="px-4 py-2 text-sm font-semibold text-beauty-black bg-beauty-white/70 border border-gold/30 rounded-full hover:bg-beauty-white transition-all"
+          >
+            Logout
+          </button>
+        </div>
       </div>
 
       {/* Tabs */}
       <div className="border-b border-gold/10 px-4 sm:px-6">
         <div className="flex gap-4 sm:gap-8 overflow-x-auto no-scrollbar">
           {[
-            { key: 'business', label: '🏢 Business Info' },
-            { key: 'hero', label: '✨ Hero Section' },
+            { key: 'business', label: '🏢 My Details' },
+            { key: 'hero', label: '✨ Homepage' },
+            { key: 'gallery', label: '🖼️ My Photos' },
+            { key: 'reviews', label: `💬 Reviews${reviews.filter(r => !r.verified).length ? ` (${reviews.filter(r => !r.verified).length} new)` : ''}` },
             { key: 'services', label: '💇 Services' },
-            { key: 'gallery', label: '🖼️ Gallery' },
-            { key: 'social', label: '🔗 Social Links' },
+            { key: 'social', label: '🔗 Socials' },
           ].map(tab => (
             <button
               key={tab.key}
@@ -276,7 +338,39 @@ export default function AdminDashboard() {
               </div>
 
               <div className="border-t border-gold/10 pt-4">
-                <h3 className="font-semibold text-beauty-black mb-4">Business Hours</h3>
+                <h3 className="font-semibold text-beauty-black mb-2">Your photo</h3>
+                <p className="text-xs text-beauty-black/50 mb-2">Shown in the &quot;About&quot; part of your website. A friendly portrait works best.</p>
+                {formData.ownerImageUrl && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={formData.ownerImageUrl} alt="Your portrait" className="w-28 h-36 object-cover rounded-lg mb-2 border border-gold/10" />
+                )}
+                <input
+                  type="file"
+                  accept="image/*"
+                  disabled={portraitUploading}
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0]
+                    if (!file) return
+                    setPortraitUploading(true)
+                    try {
+                      const url = await uploadPhoto(file, 'site')
+                      if (url) {
+                        setFormData(prev => ({ ...prev, ownerImageUrl: url }))
+                        setSaved(false)
+                      }
+                    } finally {
+                      setPortraitUploading(false)
+                      e.target.value = ''
+                    }
+                  }}
+                  className="text-sm"
+                />
+                {portraitUploading && <p className="text-sm text-gold mt-2">Uploading…</p>}
+              </div>
+
+              <div className="border-t border-gold/10 pt-4">
+                <h3 className="font-semibold text-beauty-black mb-1">Opening Hours</h3>
+                <p className="text-xs text-beauty-black/50 mb-3">Type your hours for each day, or &quot;Closed&quot;. Example: 10:00 AM - 8:00 PM</p>
                 {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map((day, i) => (
                   <div key={day} className="mb-3">
                     <label className="block text-sm text-beauty-black/70 mb-1">{day}</label>
@@ -298,11 +392,47 @@ export default function AdminDashboard() {
         {/* Hero Section */}
         {activeTab === 'hero' && (
           <div className="space-y-6">
-            <h2 className="font-serif text-2xl font-bold text-beauty-black">Hero Section</h2>
+            <h2 className="font-serif text-2xl font-bold text-beauty-black">Homepage</h2>
+            <p className="text-beauty-black/60 text-sm">This is the first thing visitors see — the big banner at the top of your website.</p>
 
             <div className="space-y-4">
+              <div className="bg-blush/15 border border-gold/10 rounded-2xl p-4">
+                <label className="block text-sm font-semibold text-beauty-black mb-1">Banner photo</label>
+                <p className="text-xs text-beauty-black/50 mb-2">The large photo at the top of your site. A bright, landscape photo of your work or your space looks best.</p>
+                {formData.heroImageUrl && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={formData.heroImageUrl} alt="Current banner" className="w-full h-36 object-cover rounded-lg mb-2 border border-gold/10" />
+                )}
+                <input
+                  type="file"
+                  accept="image/*"
+                  disabled={heroUploading}
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0]
+                    if (!file) return
+                    setHeroUploading(true)
+                    try {
+                      const url = await uploadPhoto(file, 'site')
+                      if (url) {
+                        setFormData(prev => ({ ...prev, heroImageUrl: url }))
+                        setSaved(false)
+                      }
+                    } finally {
+                      setHeroUploading(false)
+                      e.target.value = ''
+                    }
+                  }}
+                  className="text-sm"
+                />
+                {heroUploading && <p className="text-sm text-gold mt-2">Uploading…</p>}
+                {formData.heroImageUrl && !heroUploading && (
+                  <p className="text-xs text-beauty-black/50 mt-2">Remember to press Save Changes below to make it live.</p>
+                )}
+              </div>
+
               <div>
                 <label className="block text-sm font-semibold text-beauty-black mb-1">Tagline</label>
+                <p className="text-xs text-beauty-black/50 mb-1">The small line above your main headline.</p>
                 <input
                   type="text"
                   name="heroTagline"
@@ -442,11 +572,33 @@ export default function AdminDashboard() {
                 <p className="text-beauty-black/50 text-sm">No photos yet. Add your first one above.</p>
               ) : (
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                  {galleryImages.map((img) => (
+                  {galleryImages.map((img, i) => (
                     <div key={img.id} className="relative group rounded-xl overflow-hidden border border-gold/10">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={img.image_url} alt={img.title} className="w-full h-32 object-cover" />
-                      <div className="absolute inset-x-0 bottom-0 bg-beauty-black/60 text-beauty-white text-xs px-2 py-1 truncate">{img.title}</div>
+                      <div className="absolute inset-x-0 bottom-0 bg-beauty-black/60 text-beauty-white text-xs px-2 py-1 flex items-center justify-between gap-1">
+                        <span className="truncate">{img.title}</span>
+                        <span className="flex gap-1 shrink-0">
+                          <button
+                            onClick={() => moveGalleryImage(i, -1)}
+                            disabled={i === 0}
+                            className="bg-beauty-white/20 hover:bg-beauty-white/40 disabled:opacity-30 rounded px-1.5"
+                            aria-label="Move earlier"
+                            title="Move earlier"
+                          >
+                            ←
+                          </button>
+                          <button
+                            onClick={() => moveGalleryImage(i, 1)}
+                            disabled={i === galleryImages.length - 1}
+                            className="bg-beauty-white/20 hover:bg-beauty-white/40 disabled:opacity-30 rounded px-1.5"
+                            aria-label="Move later"
+                            title="Move later"
+                          >
+                            →
+                          </button>
+                        </span>
+                      </div>
                       <button
                         onClick={async () => {
                           if (!confirm('Remove this photo?')) return
@@ -460,6 +612,103 @@ export default function AdminDashboard() {
                       >
                         ×
                       </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Reviews */}
+        {activeTab === 'reviews' && (
+          <div className="space-y-6">
+            <h2 className="font-serif text-2xl font-bold text-beauty-black">Client Reviews</h2>
+            <p className="text-beauty-black/60 text-sm">
+              When a client leaves a review on your website, it appears here first.
+              Nothing shows on your site until you press <b>Approve</b>.
+            </p>
+
+            {/* Waiting for approval */}
+            <div>
+              <h3 className="font-semibold text-beauty-black mb-3">
+                Waiting for your approval ({reviews.filter(r => !r.verified).length})
+              </h3>
+              {reviews.filter(r => !r.verified).length === 0 ? (
+                <p className="text-beauty-black/50 text-sm">Nothing waiting — you&apos;re all caught up!</p>
+              ) : (
+                <div className="space-y-3">
+                  {reviews.filter(r => !r.verified).map((r) => (
+                    <div key={r.id} className="bg-blush/15 border border-gold/15 rounded-2xl p-4">
+                      <div className="flex justify-between items-start gap-3">
+                        <div>
+                          <p className="font-semibold text-beauty-black">{r.client_name}</p>
+                          <p className="text-xs text-beauty-black/50">{r.service_type} · {'★'.repeat(r.rating)}{'☆'.repeat(Math.max(0, 5 - r.rating))}</p>
+                        </div>
+                        <p className="text-xs text-beauty-black/40 whitespace-nowrap">{new Date(r.created_at).toLocaleDateString()}</p>
+                      </div>
+                      <p className="text-sm text-beauty-black/80 mt-2">{r.review_text}</p>
+                      <div className="flex gap-2 mt-3">
+                        <button
+                          onClick={async () => {
+                            const { approveReview } = await import('../../../lib/supabase')
+                            const res = await approveReview(r.id)
+                            if (res.success) await refreshReviews()
+                            else alert("Couldn't approve; please try again.")
+                          }}
+                          className="px-4 py-1.5 text-sm font-semibold bg-green-600 text-white rounded-full hover:bg-green-700 transition-all"
+                        >
+                          ✓ Approve
+                        </button>
+                        <button
+                          onClick={async () => {
+                            if (!confirm('Remove this review for good?')) return
+                            const { deleteReview } = await import('../../../lib/supabase')
+                            const res = await deleteReview(r.id)
+                            if (res.success) await refreshReviews()
+                            else alert("Couldn't remove; please try again.")
+                          }}
+                          className="px-4 py-1.5 text-sm font-semibold text-red-600 border border-red-200 rounded-full hover:bg-red-50 transition-all"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Live on the site */}
+            <div>
+              <h3 className="font-semibold text-beauty-black mb-3">
+                Live on your website ({reviews.filter(r => r.verified).length})
+              </h3>
+              {reviews.filter(r => r.verified).length === 0 ? (
+                <p className="text-beauty-black/50 text-sm">No reviews on your site yet. Approved reviews appear here.</p>
+              ) : (
+                <div className="space-y-3">
+                  {reviews.filter(r => r.verified).map((r) => (
+                    <div key={r.id} className="border border-gold/10 rounded-2xl p-4">
+                      <div className="flex justify-between items-start gap-3">
+                        <div>
+                          <p className="font-semibold text-beauty-black">{r.client_name}</p>
+                          <p className="text-xs text-beauty-black/50">{r.service_type} · {'★'.repeat(r.rating)}{'☆'.repeat(Math.max(0, 5 - r.rating))}</p>
+                        </div>
+                        <button
+                          onClick={async () => {
+                            if (!confirm('Take this review off your website and delete it?')) return
+                            const { deleteReview } = await import('../../../lib/supabase')
+                            const res = await deleteReview(r.id)
+                            if (res.success) await refreshReviews()
+                            else alert("Couldn't remove; please try again.")
+                          }}
+                          className="text-xs text-red-500 hover:text-red-700 whitespace-nowrap"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                      <p className="text-sm text-beauty-black/80 mt-2">{r.review_text}</p>
                     </div>
                   ))}
                 </div>
@@ -510,25 +759,30 @@ export default function AdminDashboard() {
           </div>
         )}
 
-        {/* Save Button */}
-        <div className="mt-8 flex gap-4">
-          <button
-            onClick={handleSave}
-            className="px-6 py-2 bg-gradient-luxury text-beauty-black font-semibold rounded-lg hover:shadow-luxury transition-all"
-          >
-            💾 Save Changes
-          </button>
+        {/* Save Button — not needed on Gallery/Reviews, those save instantly */}
+        {activeTab !== 'gallery' && activeTab !== 'reviews' && (
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <button
+              onClick={handleSave}
+              disabled={saving}
+              className="px-8 py-3 bg-gradient-luxury text-beauty-black font-bold text-base rounded-lg hover:shadow-luxury transition-all disabled:opacity-60"
+            >
+              {saving ? 'Saving…' : '💾 Save Changes'}
+            </button>
 
-          {saved && (
-            <div className="flex items-center gap-2 text-green-600 bg-green-50 px-4 py-2 rounded-lg">
-              ✅ Saved successfully!
-            </div>
-          )}
-        </div>
+            {saved && (
+              <div className="flex items-center gap-2 text-green-700 bg-green-50 border border-green-200 px-4 py-2 rounded-lg font-semibold">
+                ✅ Saved! Your website is updated.
+              </div>
+            )}
+          </div>
+        )}
 
         <div className="mt-8 p-4 bg-blush/10 rounded-lg border border-gold/10">
           <p className="text-xs text-beauty-black/60">
-            💡 Changes are saved to Supabase and will reflect on the live site.
+            {activeTab === 'gallery' || activeTab === 'reviews'
+              ? '💡 Photos and reviews update your website straight away — no Save button needed here.'
+              : '💡 After making changes, press Save Changes and they appear on your website within a few seconds. Press "See my website" at the top to check.'}
           </p>
         </div>
       </div>

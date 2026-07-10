@@ -23,6 +23,8 @@ export type ResolvedContent = {
     facebook: string
     tiktok: string
   }
+  heroImageUrl: string
+  ownerImageUrl: string
 }
 
 const ENV_WHATSAPP = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || ''
@@ -45,6 +47,8 @@ const DEFAULT_CONTENT: ResolvedContent = {
     facebook: SOCIAL_LINKS.facebook,
     tiktok: SOCIAL_LINKS.tiktok,
   },
+  heroImageUrl: HERO_CONTENT.heroImageSrc,
+  ownerImageUrl: HERO_CONTENT.ownerImageSrc,
 }
 
 // Build a wa.me link from any phone-ish string (strips spaces, +, leading zeros).
@@ -93,6 +97,8 @@ export default function SiteContentProvider({ children }: { children: React.Reac
           facebook: d.social?.facebook || prev.social.facebook,
           tiktok: d.social?.tiktok || prev.social.tiktok,
         },
+        heroImageUrl: d.heroImageUrl || prev.heroImageUrl,
+        ownerImageUrl: d.ownerImageUrl || prev.ownerImageUrl,
       }))
     })()
     return () => {

@@ -34,9 +34,9 @@ export default function SoBellaLogo({
   showTagline = true,
   className = '',
 }: Props) {
-  const pink = '#e0a0be'
-  const taglineColor = variant === 'dark' ? 'rgba(255,255,255,0.75)' : '#7a6f69'
-  const ruleColor = variant === 'dark' ? 'rgba(255,255,255,0.35)' : 'rgba(122,111,105,0.5)'
+  const pink = '#ee9ec2'
+  const taglineColor = variant === 'dark' ? 'rgba(255,255,255,0.75)' : '#7d8388'
+  const ruleColor = variant === 'dark' ? 'rgba(255,255,255,0.35)' : 'rgba(125,131,136,0.5)'
 
   return (
     <div className={`inline-flex flex-col items-center leading-none ${className}`}>
@@ -57,6 +57,18 @@ export default function SoBellaLogo({
             Hair &amp; Beauty Lounge
           </span>
           <span className="h-px w-5 sm:w-7" style={{ backgroundColor: ruleColor }} />
+        </div>
+      )}
+
+      {/* Diamond flourish — matches the real So Bella logo */}
+      {showTagline && (
+        <div className="flex items-center gap-1.5 mt-1.5">
+          <span className="h-px w-8 sm:w-10" style={{ backgroundColor: ruleColor, opacity: 0.6 }} />
+          <span
+            className="inline-block w-1.5 h-1.5 rotate-45"
+            style={{ backgroundColor: pink }}
+          />
+          <span className="h-px w-8 sm:w-10" style={{ backgroundColor: ruleColor, opacity: 0.6 }} />
         </div>
       )}
     </div>

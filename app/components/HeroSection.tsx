@@ -143,12 +143,12 @@ export default function HeroSection() {
             <div
             className="relative w-full h-full rounded-2xl overflow-hidden shadow-luxury-lg group"
             style={
-              HERO_CONTENT.heroImageSrc
-                ? { backgroundImage: `url(${HERO_CONTENT.heroImageSrc})` }
+              content.heroImageUrl
+                ? { backgroundImage: `url(${content.heroImageUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' }
                 : undefined
             }
           >
-            {HERO_CONTENT.heroImageSrc ? (
+            {content.heroImageUrl ? (
               <div className="absolute inset-0 bg-beauty-black/25" />
             ) : (
               <div className="absolute inset-0 flex items-center justify-center overflow-hidden bg-gradient-to-br from-nude-dark/30 via-blush/25 to-cream">

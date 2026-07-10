@@ -18,6 +18,10 @@ export type SiteContent = {
     facebook?: string
     tiktok?: string
   }
+  /** Big photo on the homepage banner (uploaded via the dashboard). */
+  heroImageUrl?: string
+  /** Owner portrait in the About section (uploaded via the dashboard). */
+  ownerImageUrl?: string
 }
 
 const SINGLETON_KEY = 'site_settings'

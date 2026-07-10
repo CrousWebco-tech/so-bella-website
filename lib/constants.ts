@@ -203,7 +203,7 @@ export const SERVICES = [
 export const COLORS = {
   primary: '#f5e6e0', // blush
   secondary: '#e8d4c4', // nude
-  accent: '#d4af7a', // gold
+  accent: '#ee9ec2', // gold
   dark: '#1a1a1a', // beauty-black
   light: '#faf9f7', // beauty-white
 }

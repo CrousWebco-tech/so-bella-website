@@ -9,22 +9,22 @@ const config: Config = {
     extend: {
       colors: {
         // Warm, soft luxury salon palette
-        'blush': '#f7e6dd',
-        'blush-dark': '#eecdbf',
-        'nude': '#ecdbca',
-        'nude-dark': '#dab79d',
-        'cream': '#fbf3ec',
-        'gold': '#cba06a',
-        'gold-light': '#e7c79b',
-        'beauty-black': '#2a221e',
-        'beauty-white': '#fbf6f1',
+        'blush': '#fbe5ef',
+        'blush-dark': '#f4c9de',
+        'nude': '#f6dbe8',
+        'nude-dark': '#e3aec9',
+        'cream': '#fdf3f8',
+        'gold': '#e79cc0',
+        'gold-light': '#f3c4da',
+        'beauty-black': '#322931',
+        'beauty-white': '#fdfafc',
         // Editorial accents (Elegance direction)
-        'rose': '#cf8a98',
-        'rose-light': '#e8b9c1',
-        'rose-soft': '#f4dde1',
-        'charcoal': '#1c1714',
-        'charcoal-light': '#2e2823',
-        'petal': '#fdf1ef',
+        'rose': '#ec9dc1',
+        'rose-light': '#f4c6db',
+        'rose-soft': '#fbe7f1',
+        'charcoal': '#251e24',
+        'charcoal-light': '#39303a',
+        'petal': '#fdf1f7',
       },
       fontFamily: {
         // Luxury typography
@@ -32,11 +32,11 @@ const config: Config = {
         serif: ['var(--font-serif)', 'system-ui', 'serif'],
       },
       backgroundImage: {
-        'gradient-luxury': 'linear-gradient(135deg, #f7e6dd 0%, #ecdbca 55%, #e7c79b 100%)',
-        'gradient-warm': 'linear-gradient(135deg, #fbf3ec 0%, #f7e6dd 100%)',
-        'gradient-dark': 'linear-gradient(135deg, #2a221e 0%, #3a322c 100%)',
+        'gradient-luxury': 'linear-gradient(135deg, #fbe5ef 0%, #f6dbe8 55%, #f3c4da 100%)',
+        'gradient-warm': 'linear-gradient(135deg, #fdf3f8 0%, #fbe5ef 100%)',
+        'gradient-dark': 'linear-gradient(135deg, #322931 0%, #453a44 100%)',
         // Editorial soft-pink hero wash
-        'gradient-petal': 'linear-gradient(160deg, #fdf1ef 0%, #fbf6f1 45%, #f7e6dd 100%)',
+        'gradient-petal': 'linear-gradient(160deg, #fdf1f7 0%, #fdfafc 45%, #fbe5ef 100%)',
       },
       backdropBlur: {
         xs: '2px',

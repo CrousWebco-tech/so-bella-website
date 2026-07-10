@@ -2,10 +2,10 @@
 
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
-import { HERO_CONTENT } from '../../lib/constants'
-import { useWhatsAppUrl } from './SiteContentProvider'
+import { useSiteContent, useWhatsAppUrl } from './SiteContentProvider'
 
 export default function AboutSection() {
+  const content = useSiteContent()
   const whatsappUrl = useWhatsAppUrl("Hi! I'd love to book an appointment.")
   return (
     <section
@@ -32,7 +32,7 @@ export default function AboutSection() {
             {/* Owner portrait — her photo with an elegant gold frame */}
             <div
               className="relative rounded-2xl overflow-hidden shadow-luxury-lg h-96 md:h-[30rem] bg-gradient-to-br from-nude-dark/30 via-blush/20 to-cream bg-cover bg-center bg-no-repeat group"
-              style={{ backgroundImage: `url(${HERO_CONTENT.ownerImageSrc})` }}
+              style={{ backgroundImage: `url(${content.ownerImageUrl})` }}
             >
               <div className="absolute inset-4 border border-white/40 rounded-xl group-hover:border-rose/60 transition-luxury pointer-events-none" />
               <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-beauty-black/55 via-beauty-black/15 to-transparent p-5">
