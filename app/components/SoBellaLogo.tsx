@@ -5,9 +5,17 @@ type Props = {
   size?: 'sm' | 'md' | 'lg' | 'xl'
   /** colour scheme — 'dark' for use on dark backgrounds */
   variant?: 'default' | 'dark'
-  /** show the "Hair & Beauty Lounge" line + divider */
+  /** show the "Hair & Beauty Lounge" line + divider (text fallback only) */
   showTagline?: boolean
   className?: string
+}
+
+// Heights for the real logo image (aspect ratio ~2.12:1)
+const IMAGE_HEIGHT = {
+  sm: 'h-11',
+  md: 'h-16',
+  lg: 'h-24',
+  xl: 'h-32',
 }
 
 const SCRIPT_SIZE = {
@@ -25,8 +33,10 @@ const TAGLINE_SIZE = {
 }
 
 /**
- * So Bella Hair & Beauty Lounge — wordmark.
- * Recreated as scalable text + SVG so it stays crisp at any size.
+ * So Bella Hair & Beauty Lounge — the real logo.
+ * Uses the actual logo image (transparent background) on light surfaces.
+ * On dark backgrounds it falls back to a styled text recreation so the
+ * grey tagline stays readable.
  */
 export default function SoBellaLogo({
   size = 'md',
@@ -35,8 +45,21 @@ export default function SoBellaLogo({
   className = '',
 }: Props) {
   const pink = '#ee9ec2'
-  const taglineColor = variant === 'dark' ? 'rgba(255,255,255,0.75)' : '#7d8388'
-  const ruleColor = variant === 'dark' ? 'rgba(255,255,255,0.35)' : 'rgba(125,131,136,0.5)'
+
+  if (variant !== 'dark') {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src="/images/logo.png"
+        alt="So Bella Hair & Beauty Lounge"
+        className={`${IMAGE_HEIGHT[size]} w-auto ${className}`}
+      />
+    )
+  }
+
+  // Dark-background fallback: text recreation with light tagline.
+  const taglineColor = 'rgba(255,255,255,0.75)'
+  const ruleColor = 'rgba(255,255,255,0.35)'
 
   return (
     <div className={`inline-flex flex-col items-center leading-none ${className}`}>
